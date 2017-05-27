@@ -96,8 +96,14 @@ namespace FileSystem.DAL
         /// <returns></returns>
         public T FindSingle(string condition, params DbParameter[] paramList)
         {
-            T local = null;
-            List<T> list = this.Find(condition, paramList);
+            return FindSingle<T>(QueryInfo, condition, paramList);
+        }
+
+        public TEntity FindSingle<TEntity>(IQueryInfo q,string condition, params DbParameter[] parameters)
+            where TEntity : BaseEntity, new()
+        {
+            TEntity local = new TEntity();
+            List<TEntity> list = this.Find<TEntity>(q,condition, parameters);
             if (list.Count > 0)
             {
                 local = list[0];

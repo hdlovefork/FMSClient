@@ -13,7 +13,7 @@ namespace FileSystem.Data.SqlServer
         /// </summary>
         public override IQueryInfo QueryInfo
         {
-            get { return new BaseQueryInfo("File_Department"); }
+            get { return new BaseQueryInfo("ACL_File_Department"); }
         }
         public bool Add(File_Department acl) {
             return base.Insert(acl);

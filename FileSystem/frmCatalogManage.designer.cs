@@ -37,7 +37,7 @@
             this.新建ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.编辑ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.删除ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.imageList2 = new System.Windows.Forms.ImageList(this.components);
             this.skinGroupBox2 = new CCWin.SkinControl.SkinGroupBox();
             this.skinButton2 = new CCWin.SkinControl.SkinButton();
             this.skinButton1 = new CCWin.SkinControl.SkinButton();
@@ -92,7 +92,7 @@
             this.skinTreeView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.skinTreeView1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.skinTreeView1.ImageIndex = 1;
-            this.skinTreeView1.ImageList = this.imageList1;
+            this.skinTreeView1.ImageList = this.imageList2;
             this.skinTreeView1.Location = new System.Drawing.Point(3, 29);
             this.skinTreeView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.skinTreeView1.Name = "skinTreeView1";
@@ -100,6 +100,7 @@
             this.skinTreeView1.Size = new System.Drawing.Size(510, 454);
             this.skinTreeView1.TabIndex = 0;
             this.skinTreeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.skinTreeView1_NodeMouseClick);
+            this.skinTreeView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.skinTreeView1_MouseClick);
             // 
             // contextMenuStrip1
             // 
@@ -109,35 +110,37 @@
             this.编辑ToolStripMenuItem,
             this.删除ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(182, 110);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(115, 82);
             // 
             // 新建ToolStripMenuItem
             // 
             this.新建ToolStripMenuItem.Name = "新建ToolStripMenuItem";
-            this.新建ToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.新建ToolStripMenuItem.Size = new System.Drawing.Size(114, 26);
             this.新建ToolStripMenuItem.Text = "新建";
             this.新建ToolStripMenuItem.Click += new System.EventHandler(this.新建ToolStripMenuItem_Click);
             // 
             // 编辑ToolStripMenuItem
             // 
             this.编辑ToolStripMenuItem.Name = "编辑ToolStripMenuItem";
-            this.编辑ToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.编辑ToolStripMenuItem.Size = new System.Drawing.Size(114, 26);
             this.编辑ToolStripMenuItem.Text = "编辑";
             this.编辑ToolStripMenuItem.Click += new System.EventHandler(this.编辑ToolStripMenuItem_Click);
             // 
             // 删除ToolStripMenuItem
             // 
             this.删除ToolStripMenuItem.Name = "删除ToolStripMenuItem";
-            this.删除ToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.删除ToolStripMenuItem.Size = new System.Drawing.Size(114, 26);
             this.删除ToolStripMenuItem.Text = "删除";
             this.删除ToolStripMenuItem.Click += new System.EventHandler(this.删除ToolStripMenuItem_Click);
             // 
-            // imageList1
+            // imageList2
             // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "folder_open.png");
-            this.imageList1.Images.SetKeyName(1, "folder.png");
+            this.imageList2.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList2.ImageStream")));
+            this.imageList2.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList2.Images.SetKeyName(0, "book_open.png");
+            this.imageList2.Images.SetKeyName(1, "book.png");
+            this.imageList2.Images.SetKeyName(2, "folder_open.png");
+            this.imageList2.Images.SetKeyName(3, "folder.png");
             // 
             // skinGroupBox2
             // 
@@ -210,7 +213,7 @@
             this.skinTextBox1.MouseState = CCWin.SkinClass.ControlState.Normal;
             this.skinTextBox1.Name = "skinTextBox1";
             this.skinTextBox1.NormlBack = null;
-            this.skinTextBox1.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.skinTextBox1.Padding = new System.Windows.Forms.Padding(5);
             this.skinTextBox1.Size = new System.Drawing.Size(289, 40);
             // 
             // skinTextBox1.BaseText
@@ -281,8 +284,6 @@
         private System.Windows.Forms.ToolStripMenuItem 新建ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 编辑ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 删除ToolStripMenuItem;
-        private System.Windows.Forms.ImageList imageList1;
-
-
+        private System.Windows.Forms.ImageList imageList2;
     }
 }

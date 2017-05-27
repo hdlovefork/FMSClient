@@ -41,6 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuthPermission.cs" />
+    <Compile Include="Entity\BasePermission.cs" />
+    <Compile Include="Entity\FileDepartment.cs" />
+    <Compile Include="Entity\FileUser.cs" />
     <Compile Include="FileAccess.cs" />
     <Compile Include="FileAccessService.cs" />
     <Compile Include="IFileAccessService.cs" />

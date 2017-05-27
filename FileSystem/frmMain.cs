@@ -137,23 +137,7 @@ namespace FileSystem
                 node.Text = "部门文件";
                 node.Tag = "";
                 skinTreeViewDep.Nodes.Add(node);
-                cDepTree(node);
-                //添加部门树点击事件
-                skinTreeViewDep.NodeMouseClick += (s, e) =>
-                {
-                    if (e.Button == MouseButtons.Left)
-                    {
-                        var d = e.Node.Tag as Department;
-                        if (d != null)
-                        {
-                            var dt = new FileBLL().GetFileByDepartment(d.DepartmentID);
-                            this.skinDataGridView1.DataSource = dt;
-                            if (dt != null && dt.Rows.Count > 0)
-                                skinDataGridView1.Rows[0].Selected = false;
-                            this.skinGroupBox1.Text = "[" + e.Node.Text + "]" + "共" + dt.Rows.Count + "份文档(下列文档点击右键可以进行操作)";
-                        }
-                    }
-                };
+                cDepTree(node);              
                 skinTreeViewDep.ExpandAll();
             }
             catch (Exception e)
@@ -602,7 +586,7 @@ namespace FileSystem
                         skinDataGridView1.Rows[0].Selected = false;
                     this.skinGroupBox1.Text = "[" + frm.Fname + "]" + "共" + dt.Rows.Count + "份文档(下列文档点击右键可以进行操作)";
                 }
-                if (frm.Refurbishdep)
+                else
                 {
                     DataTable dt = new FileBLL().GetFileByDepartment(frm.Depid);
                     this.skinDataGridView1.DataSource = dt;
@@ -842,6 +826,39 @@ namespace FileSystem
         {
             //读取Notice表，取出未读消息 ToUser == LoginUser.UserID AND IsRead==false
            // FrmPopup.Show("34224");
+        }
+
+        private void skinTreeViewDep_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                var d = e.Node.Tag as Department;
+                if (d != null)
+                {
+                    var dt = new FileBLL().GetFileByDepartment(d.DepartmentID);
+                    this.skinDataGridView1.DataSource = dt;
+                    if (dt != null && dt.Rows.Count > 0)
+                        skinDataGridView1.Rows[0].Selected = false;
+                    this.skinGroupBox1.Text = "[" + e.Node.Text + "]" + "共" + dt.Rows.Count + "份文档(下列文档点击右键可以进行操作)";
+                }
+                var f = e.Node.Tag as FileSystem.Model.File;
+                if (f != null)
+                {
+                    //点击了部门里面的一个文件夹
+                }
+            }
+        }
+
+        private void skinTreeViewDep_MouseClick(object sender, MouseEventArgs e)
+        {
+            if(e.Button == MouseButtons.Right)
+            {
+                TreeView tv = sender as TreeView;
+                if (tv == null) return;
+                TreeNode node = tv.GetNodeAt(e.X, e.Y);
+                if (node == null) return;
+                tv.SelectedNode = node;
+            }
         }
     }
 }

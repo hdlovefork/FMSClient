@@ -9,7 +9,7 @@ namespace FileSystem.BLL
 {
    public class File_Share_NoticeBLL
     {
-       public bool Add(File_Share_Notice f) {
+       public bool Add(File_User_Notice f) {
            return new File_Share_NoticeService().Add(f);
        }
     }

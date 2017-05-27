@@ -41,7 +41,7 @@ namespace FileSystem
                 if (ok)
                 {
                     bool ok1 = new File_Share_NoticeBLL().Add(
-                        new File_Share_Notice
+                        new File_User_Notice
                         {
                             FileID = FileId,
                             FromUserID = LoginUser.UserId,

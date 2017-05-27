@@ -6,13 +6,13 @@ using FileSystem.Model;
 
 namespace FileSystem.Data.SqlServer
 {
-   public class File_Share_NoticeService:BaseService<File_Share_Notice>
+   public class File_Share_NoticeService:BaseService<File_User_Notice>
     {
        public override IQueryInfo QueryInfo
        {
-           get { return new BaseQueryInfo("File_Share_Notice","File_Share_Notice_ID"); }
+           get { return new BaseQueryInfo("File_User_Notice","NoticeID"); }
        }
-       public bool Add(File_Share_Notice f) {
+       public bool Add(File_User_Notice f) {
            return base.Insert(f);
        }
     }

@@ -51,5 +51,7 @@ namespace FileSystem.Entity
         public int UserID { get; set; }
         public string UserName { get; set; }
 
+        public bool FileArchive { get; set; }
+
 	}
 }

@@ -12,6 +12,7 @@
  * Copyright @ Dean 2017 All rights reserved 
 *****************************************************************/
 using FileSystem.Entity;
+using FileSystem.Service.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +34,9 @@ namespace FileSystem.Service
             FileAccessService fileService = new FileAccessService();
             File file = fileService.GetFileByFID(fileID);
             if (file == null) return false;
+            //判断文件是否已经归档
+            if (access == FilePermission.Delete && file.FileArchive)
+                return false;
             //1.判断文件是否属于自己
             if (file.UserID == uid)
             {
@@ -40,42 +44,33 @@ namespace FileSystem.Service
                     return true;
             }
             //2.判断自己的部门是否和文件所在同一个部门
-            IList<Department> fileDepartment = fileService.GetDepartmentByFID(fileID);
+            IList<FileDepartment> fileDepartment = fileService.GetDepartmentByFID(fileID);
             IList<Department> userDepartment = fileService.GetDepartmentByUID(uid);
-            if (CheckFileDepartment(fileDepartment, userDepartment))
+            if (CheckFileDepartment(userDepartment, fileDepartment,access))
             {
-                //用戶处于文件所属组中
-                //判断用户是否可以执行指定操作
-                //if (CheckFilePermission(file.FileRole, access))
+                return true;
+            }
+            //3.判断文件共享权限
+            FileUser fileUser = fileService.GetFileShare(uid, fileID);
+            if (fileUser != null)
+            {
+                if (CheckFilePermission(fileUser.FilePermission, access))
                     return true;
-            }
-            //3.判断其它组是否能执行指定的操作
-            //if (CheckFilePermission(file.FileOther, access))
-                return true;
-            //4.判断文件是否借阅给当前用户ID
-            if (access == FilePermission.Read && fileService.IsShareFile(uid, fileID))
-                return true;
-            //5.判断用户是否属于文件所属部门
-            if (access == FilePermission.Read)
-            {
-                //List<Department> fileDepartment = fileService.GetDepartmentByFID(fileID);
-                //List<Department> userDepartment = fileService.GetDepartmentByUID(uid);
-                //if (CheckFileDepartment(userDepartment, fileDepartment))
-                //{
-                //    return true;
-                //}
-            }
+            }                 
             return false;
         }
 
-        private static bool CheckFileDepartment(List<Department> userDepartment, List<Department> fileDepartment)
+        private static bool CheckFileDepartment(IList<Department> userDepartment, IList<FileDepartment> fileDepartment,FilePermission access)
         {
             foreach (var d1 in userDepartment)
             {
                 foreach (var d2 in fileDepartment)
                 {
                     if (d1.DepartmentID == d2.DepartmentID)
-                        return true;
+                    {
+                        if(CheckFilePermission((int)d2.FilePermission,access))
+                            return true;
+                    }
                 }
             }
             return false;

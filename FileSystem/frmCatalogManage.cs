@@ -247,7 +247,16 @@ namespace FileSystem
         {
             this.skinGroupBox2.Enabled = false;
         }
-       
+
+        private void skinTreeView1_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left) return;
+            TreeView tv = sender as TreeView;
+            if (tv == null) return;
+            TreeNode node = tv.GetNodeAt(e.X, e.Y);
+            if (node == null) return;
+            tv.SelectedNode = node;
+        }
     }
 }
 
