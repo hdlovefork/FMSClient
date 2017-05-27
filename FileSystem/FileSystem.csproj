@@ -1,0 +1,400 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5272E506-0842-4A6D-897A-F0AF6AC18073}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FileSystem</RootNamespace>
+    <AssemblyName>FileSystem</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>speed_plane.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AxInterop.DSOFramer, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>F:\WorkSpace\DotNet\FileSystem\FileSystem\bin\Debug\AxInterop.DSOFramer.dll</HintPath>
+    </Reference>
+    <Reference Include="CSkin">
+      <HintPath>..\..\WinForm\DLL\CSkin.dll</HintPath>
+    </Reference>
+    <Reference Include="PanGu">
+      <HintPath>..\DLL\PanGu.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="frmBorrowDep.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBorrowDep.Designer.cs">
+      <DependentUpon>frmBorrowDep.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmBorrowPersonal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBorrowPersonal.Designer.cs">
+      <DependentUpon>frmBorrowPersonal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCatalogManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCatalogManage.designer.cs">
+      <DependentUpon>frmCatalogManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmComment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmComment.designer.cs">
+      <DependentUpon>frmComment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmFind.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFind.designer.cs">
+      <DependentUpon>frmFind.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLoading.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLoading.Designer.cs">
+      <DependentUpon>frmLoading.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLogin.designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPermissionConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPermissionConfig.Designer.cs">
+      <DependentUpon>frmPermissionConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmPlayer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmPlayer.Designer.cs">
+      <DependentUpon>FrmPlayer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmPopup.designer.cs">
+      <DependentUpon>FrmPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTemplet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTemplet.Designer.cs">
+      <DependentUpon>frmTemplet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OpenFile\frmPic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OpenFile\frmPic.Designer.cs">
+      <DependentUpon>frmPic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OpenFile\frmOffice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OpenFile\frmOffice.Designer.cs">
+      <DependentUpon>frmOffice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OpenFile\frmPdf.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OpenFile\frmPdf.Designer.cs">
+      <DependentUpon>frmPdf.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OpenFile\frmMusic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OpenFile\frmMusic.Designer.cs">
+      <DependentUpon>frmMusic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmNotice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNotice.Designer.cs">
+      <DependentUpon>frmNotice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPersonal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPersonal.designer.cs">
+      <DependentUpon>frmPersonal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OpenFile\frmTxt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OpenFile\frmTxt.Designer.cs">
+      <DependentUpon>frmTxt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmUpload.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUpload.designer.cs">
+      <DependentUpon>frmUpload.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmBorrowDep.resx">
+      <DependentUpon>frmBorrowDep.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBorrowPersonal.resx">
+      <DependentUpon>frmBorrowPersonal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCatalogManage.resx">
+      <DependentUpon>frmCatalogManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmComment.resx">
+      <DependentUpon>frmComment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFind.resx">
+      <DependentUpon>frmFind.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLoading.resx">
+      <DependentUpon>frmLoading.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNotice.resx">
+      <DependentUpon>frmNotice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPermissionConfig.resx">
+      <DependentUpon>frmPermissionConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPersonal.resx">
+      <DependentUpon>frmPersonal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmPlayer.resx">
+      <DependentUpon>FrmPlayer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmPopup.resx">
+      <DependentUpon>FrmPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTemplet.resx">
+      <DependentUpon>frmTemplet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUpload.resx">
+      <DependentUpon>frmUpload.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OpenFile\frmMusic.resx">
+      <DependentUpon>frmMusic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OpenFile\frmOffice.resx">
+      <DependentUpon>frmOffice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OpenFile\frmPic.resx">
+      <DependentUpon>frmPic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OpenFile\frmTxt.resx">
+      <DependentUpon>frmTxt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FileSystem.BLL\FileSystem.BLL.csproj">
+      <Project>{47186B8A-642A-4CA6-9BAF-100CD8341703}</Project>
+      <Name>FileSystem.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FileSystem.DAL\FileSystem.DAL.csproj">
+      <Project>{3F348567-A268-44C0-BCE1-E3C59AB6091C}</Project>
+      <Name>FileSystem.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FileSystem.Data\FileSystem.Data.csproj">
+      <Project>{9731B7F4-0F85-402B-8B12-FB9600C9DCAA}</Project>
+      <Name>FileSystem.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FileSystem.Entity\FileSystem.Entity.csproj">
+      <Project>{3D25F27C-1995-4444-AE57-6131F2370CB2}</Project>
+      <Name>FileSystem.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FileSystem.Model\FileSystem.Model.csproj">
+      <Project>{082863D8-5841-4360-A581-04FC03B13812}</Project>
+      <Name>FileSystem.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FileSystem.Service\FileSystem.Service.csproj">
+      <Project>{4B6EDA39-E9CD-49DC-BDA1-785679E66E90}</Project>
+      <Name>FileSystem.Service</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\登录界面背景.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\登录按钮.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\登录界面背景1.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\登录按钮1.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pencil.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\address.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\world.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sign_out.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\006_副本.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sj.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\action_delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\base.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reply.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AxWMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="WMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\loading.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\loading2.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\vcard_edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delicious.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\word.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blueSky.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\male.png" />
+    <None Include="Resources\group.png" />
+    <None Include="Resources\page_white_add.png" />
+    <None Include="Resources\page_white_get.png" />
+    <None Include="Resources\plus.png" />
+    <None Include="Resources\document_library.png" />
+    <None Include="Resources\user.png" />
+    <Content Include="speed_plane.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

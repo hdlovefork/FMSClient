@@ -1,0 +1,4 @@
+﻿这个文件夹下面都是继承自IService的接口声明
+
+注意命名空间统一是：FileSystem.DAL
+当你右键创建接口的时候默认命名空间是：FileSystem.DAL.Interface，请注意一定要修改成FileSystem.DAL

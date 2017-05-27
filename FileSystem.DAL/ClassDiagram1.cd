@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="FileSystem.DAL.DbUtility" Collapsed="true">
+    <Position X="11.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAIAAAEAAACCAAAAAAEAAAAAAAAABACAAAAAAAAA=</HashCode>
+      <FileName>Base\DbUtility.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FileSystem.DAL.BaseService&lt;T&gt;" Collapsed="true">
+    <Position X="4" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAIAAAAAAAgAAAAAAAAAAJAAgAAAAAEBAAAAI=</HashCode>
+      <FileName>Base\BaseService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FileSystem.DAL.BaseQueryInfo" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="10" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAABAAAAUAAAAAAAAAgAAAAAAAAAABBSAAQAAgAA=</HashCode>
+      <FileName>Base\BaseQuery.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="FileSystem.DAL.RoleService" Collapsed="true">
+    <Position X="3" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>Implement\RoleService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FileSystem.DAL.DepartmentService" Collapsed="true">
+    <Position X="0.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAIAAAAAA=</HashCode>
+      <FileName>Implement\DepartmentService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FileSystem.DAL.PositionService" Collapsed="true">
+    <Position X="5.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>Implement\PositionService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FileSystem.DAL.UserService" Collapsed="true">
+    <Position X="7.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAEAAAAAAEAAQAAACgAEAAAAAAAAAA=</HashCode>
+      <FileName>Implement\UserService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="FileSystem.DAL.IQueryInfo" Collapsed="true">
+    <Position X="10" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAgAAAAAAAAAABAAAAQAAgAA=</HashCode>
+      <FileName>Interface\IQueryInfo.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="FileSystem.DAL.IService" Collapsed="true">
+    <Position X="4" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interface\IService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="FileSystem.DAL.IDeapartService" Collapsed="true">
+    <Position X="0.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Interface\IDeapartService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="FileSystem.DAL.IPositionService" Collapsed="true">
+    <Position X="3" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interface\IPositionService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="FileSystem.DAL.IRoleService" Collapsed="true">
+    <Position X="5.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interface\IRoleService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="FileSystem.DAL.IUserService" Collapsed="true">
+    <Position X="7.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAEAAAAAAEAAQAAACAAEAAAAAAAAAA=</HashCode>
+      <FileName>Interface\IUserService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Microsoft YaHei UI" Size="9" />
+</ClassDiagram>

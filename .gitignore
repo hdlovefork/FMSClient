@@ -1,0 +1,19 @@
+# 忽略任意文件夹下的bin和obj文件夹
+*/bin/
+*/obj/
+
+# 忽略所有DLL，但除了ExtDLL文件夹下的DLL
+*.dll  
+*.dump
+*.pdf
+!ExtDll/*.dll 
+
+# 忽略所有以.pdb结尾的文件
+*.pdb
+*.exe
+
+# 忽略所有名为.vs的文件夹
+.vs
+
+
+
