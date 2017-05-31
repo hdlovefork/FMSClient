@@ -87,6 +87,18 @@ namespace FileSystem.Data
             return local;
         }
 
+        public TEntity FindSingle<TEntity>(IQueryInfo q,string condition, params DbParameter[] paramList)
+            where TEntity:new()
+        {
+            TEntity local = default(TEntity);
+            List<TEntity> list = this.Find<TEntity>(q,condition, paramList);
+            if (list.Count > 0)
+            {
+                local = list[0];
+            }
+            return local;
+        }        
+
         /// <summary>
         /// 根据主键得到数据-单表
         /// </summary>
@@ -227,5 +239,47 @@ namespace FileSystem.Data
         /// 这里挖了一个坑让你们来填，返回我要的表名、字段名、降序排？、返回哪些字段？....
         /// </summary>
         public abstract IQueryInfo QueryInfo { get; }
+
+        public List<TEntity> Find<TEntity>(IQueryInfo q, string condition, params DbParameter[] paramList)
+           where TEntity :  new()
+        {
+            string str = string.Format("SELECT {0} FROM {1}{2}", q.SelectedFields, q.TableName, string.IsNullOrWhiteSpace(condition) ? string.Empty : " WHERE " + condition);
+            if (!string.IsNullOrWhiteSpace(q.SortField))//排序字段不为空时才排序
+                str += string.Format(" ORDER BY {0} {1}", q.SortField, q.IsDescending ? "DESC" : "ASC");
+            return this.GetList<TEntity>(str, paramList);
+        }
+
+        private List<TEntity> GetList<TEntity>(string strSql, DbParameter[] parameters)
+            where TEntity :  new()
+        {
+            TEntity item = default(TEntity);
+            List<TEntity> list = new List<TEntity>();
+            IDataReader reader = db.ExecuteReader(strSql, parameters);
+            while (reader.Read())
+            {
+                item = this.DataReaderToEntity<TEntity>(reader);
+                list.Add(item);
+            }
+            reader.Close();
+            return list;
+        }
+
+        protected virtual TEntity DataReaderToEntity<TEntity>(IDataReader dr)
+        {
+            TEntity local = Activator.CreateInstance<TEntity>();
+            foreach (PropertyInfo info in local.GetType().GetProperties())
+            {
+                try
+                {
+                    if (dr[info.Name].ToString() != "")
+                        info.SetValue(local, dr[info.Name] ?? "", null);
+                }
+                catch
+                {
+                }
+            }
+            return local;
+        }
+
     }
 }

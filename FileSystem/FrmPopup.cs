@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -12,14 +13,14 @@ using System.Windows.Forms;
 
 namespace FileSystem
 {
-    public partial class FrmPopup :CCWin.CCSkinMain
+    public partial class FrmPopup : CCWin.CCSkinMain
     {
         public static event System.EventHandler ClickNotice;
 
         static FrmPopup _frmPopup;
         static Timer _timer1;
         static bool _isPopup;
-   
+
         [DllImport("user32")]
         private static extern bool AnimateWindow(IntPtr hwnd, int dwTime, int dwFlags);
 
@@ -64,7 +65,7 @@ namespace FileSystem
             _timer1 = new Timer();
             _timer1.Interval = 6000;//默认显示6秒
             _timer1.Tick += timer1_Tick;
-        }     
+        }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -78,23 +79,22 @@ namespace FileSystem
             _frmPopup = new FrmPopup();
             _frmPopup.Text = caption;
             _frmPopup.lblContent.Text = content;
-            _timer1.Interval = duration;
-            _timer1.Enabled = true;
+            if (duration > 0)
+            {
+                _timer1.Interval = duration;
+                _timer1.Enabled = true;
+            }
             _frmPopup.Show();
         }
         public static void Show(string content)
         {
-            Show("新消息", content, 6000);
+            Show("新消息", content, 0);
         }
 
-        private void FrmPopup_MouseEnter(object sender, EventArgs e)
+        public static void ClosePopup()
         {
-            _timer1.Enabled = false;
-        }
-
-        private void FrmPopup_MouseLeave(object sender, EventArgs e)
-        {
-            _timer1.Enabled = true;
+            if (_frmPopup != null)
+                _frmPopup.Close();
         }
 
         private void FrmPopup_Click(object sender, EventArgs e)

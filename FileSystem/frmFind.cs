@@ -20,6 +20,7 @@ using System.Text;
 using System.Windows.Forms;
 using PanGu;
 using FileSystem.BLL;
+
 namespace FileSystem
 {
     public partial class frmFind : Form

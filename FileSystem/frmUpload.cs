@@ -61,18 +61,16 @@ namespace FileSystem
         private void LoadComboxDep()
         {
             IList<Department> d = new DepBLL().GetAll();
-
             comboBox2.DataSource = d;
             comboBox2.ValueMember = "DepartmentID";
             comboBox2.DisplayMember = "DepartmentName";
-
         }
 
         private void LoadComboxPersonl()
         {
             //this.comboBox1.Items.Add("个人文件");
             IList<FileNode> fnList = new List<FileNode>();
-            AddChild(fnList, "   ", 1, -1);
+            AddChild(fnList, "   ", 0, -1);
             foreach (var fileNode in fnList)
             {
                 comboBox1.Items.Add(fileNode);
@@ -84,7 +82,7 @@ namespace FileSystem
                     FileNode o = fnList[i];
                     if (o.File.FileID == _id)
                     {
-                        this.comboBox1.SelectedIndex = (i + 1);       //因为做了一个假定的参数所以要+1
+                        this.comboBox1.SelectedIndex = (i);       //因为做了一个假定的参数所以要+1
                         break;
                     }
                 }
@@ -158,7 +156,6 @@ namespace FileSystem
                 NewFileId = new FileBLL().MaxId();
                 if (check)
                 {
-                    MessageBox.Show("文件添加成功！", "系统提示");
                     _status = "personal";
                     this.DialogResult = System.Windows.Forms.DialogResult.OK;
                 }
@@ -252,11 +249,10 @@ namespace FileSystem
                     FileSize = tmpfile.Length,
                     UserID = LoginUser.UserId
                 };
-                var check = new FileBLL().AddFileDep(file, _depid);
-                if (check)
+                NewFileId = new FileBLL().AddFileDep(file, _depid);
+                if (NewFileId > 0)
                 {
                     _status = "department";
-                    MessageBox.Show("文件添加成功！", "系统提示");
                     this.DialogResult = System.Windows.Forms.DialogResult.OK;
                 }
                 else

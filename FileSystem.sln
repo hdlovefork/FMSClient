@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2010
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.6
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileSystem.Data", "FileSystem.Data\FileSystem.Data.csproj", "{9731B7F4-0F85-402B-8B12-FB9600C9DCAA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileSystem.Data.SqlServer", "FileSystem.Data.SqlServer\FileSystem.Data.SqlServer.csproj", "{002ECDA1-BA85-4B2A-85DC-9FE461D05B88}"

@@ -153,7 +153,7 @@
             this.skinButton1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.skinButton1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.skinButton1.Location = new System.Drawing.Point(236, 299);
-            this.skinButton1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.skinButton1.Margin = new System.Windows.Forms.Padding(4);
             this.skinButton1.MouseBack = null;
             this.skinButton1.Name = "skinButton1";
             this.skinButton1.NormlBack = null;
@@ -171,7 +171,7 @@
             this.skinButton2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.skinButton2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.skinButton2.Location = new System.Drawing.Point(355, 299);
-            this.skinButton2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.skinButton2.Margin = new System.Windows.Forms.Padding(4);
             this.skinButton2.MouseBack = null;
             this.skinButton2.Name = "skinButton2";
             this.skinButton2.NormlBack = null;
@@ -196,6 +196,7 @@
             // 
             // frmLogin
             // 
+            this.AcceptButton = this.skinButton1;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::FileSystem.Properties.Resources._006_副本;
@@ -210,7 +211,7 @@
             this.Controls.Add(this.skinLabel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmLogin";

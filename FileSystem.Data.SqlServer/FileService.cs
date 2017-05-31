@@ -185,11 +185,12 @@ namespace FileSystem.Data.SqlServer
 
         public bool AddCatalogFile(File file)
         {
-            string sql = string.Format("insert into [File](FileName,FileSize,FilePID) values(@FileName,@FileSize,@FilePID)");
+            string sql = string.Format("insert into [File](FileName,FileSize,FilePID,UserID) values(@FileName,@FileSize,@FilePID,@UserID)");
             return db.ExecuteNonQuery(sql, new SqlParameter[] {
                 new SqlParameter("@FileName",file.FileName),
                 new SqlParameter("@FileSize",file.FileSize),
-                new SqlParameter("@FilePID",file.FilePID)
+                new SqlParameter("@FilePID",file.FilePID),
+                new SqlParameter("@UserID",file.UserID),
             }) > 0;
         }
 
@@ -210,5 +211,17 @@ namespace FileSystem.Data.SqlServer
             dic.Add("update  [File]  set FileName=@BFileName where FileName=@LFileName", new SqlParameter[] { new SqlParameter("@BFileName", BFileName), new SqlParameter("@LFileName", LFileName) });
             return db.ExecuteNonQuery(dic) > 0;
         }      
+
+        public List<File_Department> GetDepByFID(int fid)
+        {
+           return Find<File_Department>(new BaseQueryInfo("View_File_Department","", false, "*", "FileID"), "FileID=@FileID", new SqlParameter("@FileID", fid));
+        }
+
+        public List<ACL_File_User> GetUsersByFID(int fid)
+        {
+            return Find<ACL_File_User>(new BaseQueryInfo("View_File_User","",false,"*","FileID"), "FileID=@FileID", new SqlParameter("@FileID", fid));
+        }
+
+       
     }
 }

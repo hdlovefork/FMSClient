@@ -38,24 +38,26 @@ namespace FileSystem.BLL
             return new FileService().UpdateFileArchive(fileId, status);
         }
 
-        public bool AddFileDep(File file, int depID)
+        public int AddFileDep(File file, int depID)
         {
+            int fid = 0;
             //添加新文件
             bool ok = new FileService().AddFile(file);
             if (ok)
             {
-                int fileId = MaxId();
-                if (fileId <= 0) return false;
+                fid = MaxId();
+                if (fid <= 0) return fid;
                 //将新文件添加到文件-部门中间表
-                ok = new FileDepartmentBLL().Add(
+                ok = new FileDepartmentBLL().AddFilDepartment(
                           new File_Department
                           {
-                              FileID = fileId,
-                              DepartmentID = depID
+                              FileID = fid,
+                              DepartmentID = depID,
+                              FilePermission=1
                           }
                           );
             }
-            return ok;
+            return fid;
         }
 
         public List<File> GetOne(int fileId)
@@ -125,6 +127,16 @@ namespace FileSystem.BLL
         public bool UpdateCatalog(string BFileName, string LFileName)
         {
             return new FileService().UpdateCatalog(BFileName, LFileName);
+        }
+
+        public List<File_Department> GetDepShareFiles(int fileID)
+        {
+            return new FileService().GetDepByFID(fileID);
+        }
+
+        public List<ACL_File_User> GetUserShareFiles(int fileID)
+        {
+            return new FileService().GetUsersByFID(fileID);
         }
     }
 }

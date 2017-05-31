@@ -40,8 +40,9 @@ namespace FileSystem
         private void Form1_Load(object sender, EventArgs e)
         {
             // this.axFramerControl1.Open(path,false,LoadOpenFileType(mExt),null,null);
-            this.axFramerControl1.Open(path, mReadOnly, null, null, null);
+            this.axFramerControl2.Open(path, mReadOnly, null, null, null);
             //this.webBrowser1.Navigate(path);
+            
         }
 
         private void btnSave_Click(object sender, EventArgs e)

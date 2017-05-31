@@ -46,5 +46,10 @@ namespace FileSystem.Model
 		/// 
 		/// </summary>
 		public DateTime? UserCreateTime { get; set; }
-	}
+
+        public override string ToString()
+        {
+            return UserRealName+"("+UserName+")";
+        }
+    }
 }

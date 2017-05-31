@@ -48,7 +48,6 @@
     <Compile Include="Department.cs" />
     <Compile Include="DOC_Templete.cs" />
     <Compile Include="File.cs" />
-    <Compile Include="FileAccess.cs" />
     <Compile Include="File_Department.cs" />
     <Compile Include="File_Share.cs" />
     <Compile Include="File_Share_Notice.cs" />

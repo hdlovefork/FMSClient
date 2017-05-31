@@ -31,6 +31,7 @@ namespace FileSystem.Data
          {
              _sTempTableName = tableName;
              _sTableName = string.Format("[{0}]",tableName);
+            _sSortField = string.Empty;
          }
 
          public BaseQueryInfo(string tableName, string primaryKey)
@@ -66,7 +67,7 @@ namespace FileSystem.Data
 
         public string SortField
         {
-            get { return string.IsNullOrEmpty(_sSortField) ? _sTempTableName + "ID" : _sSortField; }
+            get { return _sSortField; }
         }
 
         public string TableName

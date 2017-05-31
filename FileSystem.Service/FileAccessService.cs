@@ -23,7 +23,7 @@ using System.Text;
 
 namespace FileSystem.Service
 {
-    internal class FileAccessService : BaseService<File>, IFileAccessService
+    public class FileAccessService : BaseService<File>, IFileAccessService
     {
         public override IQueryInfo QueryInfo { 
             get { return new BaseQueryInfo("File", null); } 

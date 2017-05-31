@@ -26,5 +26,19 @@ namespace FileSystem.Model
 		/// 
 		/// </summary>
 		public int? UserID { get; set; }
-	}
+        public int FilePermission { get; set; }
+
+        public string UserRealName { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            ACL_File_User fu = obj as ACL_File_User;
+            if (fu != null)
+            {
+                return fu.FileID == FileID && fu.UserID == UserID;
+            }
+            return false;
+        }
+
+    }
 }

@@ -31,10 +31,20 @@ namespace FileSystem.BLL
             return new ACLFileUserService().MaxId();
         }
 
-        public bool AddFilUser(ACL_File_User acl)
+        public bool AddFileUser(ACL_File_User acl)
         {
-            return new ACLFileUserService().AddFilUser(acl);
+            return new ACLFileUserService().InsertFileUser(acl);
 
+        }
+
+        public bool UpdateFileUser(ACL_File_User acl)
+        {
+            return new ACLFileUserService().UpdateFileUser(acl);
+        }
+
+        public bool DeleteFileUser(ACL_File_User acl)
+        {
+            return new ACLFileUserService().DeleteFileUser(acl);
         }
     }
 }

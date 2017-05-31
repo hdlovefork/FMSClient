@@ -83,6 +83,26 @@ namespace FileSystem.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap _false {
+            get {
+                object obj = ResourceManager.GetObject("false", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap _true {
+            get {
+                object obj = ResourceManager.GetObject("true", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap action_delete {
             get {
                 object obj = ResourceManager.GetObject("action_delete", resourceCulture);
@@ -276,6 +296,16 @@ namespace FileSystem.Properties {
         internal static System.Drawing.Bitmap sj {
             get {
                 object obj = ResourceManager.GetObject("sj", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap speed_plane {
+            get {
+                object obj = ResourceManager.GetObject("speed_plane", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

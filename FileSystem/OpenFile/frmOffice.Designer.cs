@@ -29,36 +29,27 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmOffice));
-            this.axFramerControl1 = new AxDSOFramer.AxFramerControl();
-            ((System.ComponentModel.ISupportInitialize)(this.axFramerControl1)).BeginInit();
+            this.axFramerControl2 = new AxDSOFramer.AxFramerControl();
+            ((System.ComponentModel.ISupportInitialize)(this.axFramerControl2)).BeginInit();
             this.SuspendLayout();
             // 
-            // axFramerControl1
+            // axFramerControl2
             // 
-            this.axFramerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.axFramerControl1.Enabled = true;
-            this.axFramerControl1.Location = new System.Drawing.Point(0, 0);
-            this.axFramerControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.axFramerControl1.Name = "axFramerControl1";
-            this.axFramerControl1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axFramerControl1.OcxState")));
-            this.axFramerControl1.Size = new System.Drawing.Size(1699, 939);
-            this.axFramerControl1.TabIndex = 0;
+            this.axFramerControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.axFramerControl2.Enabled = true;
+            this.axFramerControl2.Location = new System.Drawing.Point(0, 0);
+            this.axFramerControl2.Name = "axFramerControl2";
+            this.axFramerControl2.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axFramerControl2.OcxState")));
+            this.axFramerControl2.Size = new System.Drawing.Size(1262, 753);
+            this.axFramerControl2.TabIndex = 0;
             // 
             // frmOffice
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1699, 939);
-            this.Controls.Add(this.axFramerControl1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ClientSize = new System.Drawing.Size(1262, 753);
+            this.Controls.Add(this.axFramerControl2);
             this.Name = "frmOffice";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Office文件";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.axFramerControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axFramerControl2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -67,5 +58,6 @@
 
         //private AxDSOFramer.AxFramerControl axFramerControl1;
         private AxDSOFramer.AxFramerControl axFramerControl1;
+        private AxDSOFramer.AxFramerControl axFramerControl2;
     }
 }

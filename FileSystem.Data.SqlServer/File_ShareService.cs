@@ -25,7 +25,7 @@ namespace FileSystem.Data.SqlServer
         }
 
         public DataTable GetFile_Share(int UserId) {
-            string sql = string.Format(@"select FileID,FileName,FileExt,FileSize,FileCreateTime,UserRealName from [View_File_User] 
+            string sql = string.Format(@"select FileID,FileName,FileExt,FileSize,FileCreateTime,OwnerRealName as UserRealName from [View_File_User] 
 	                                    where UserID={0} and FileExt is not null" ,UserId);
             DataTable d = db.ExecuteDataTable(sql, null);
             return d;

@@ -66,7 +66,7 @@ namespace FileSystem.Data
         /// <param name="sql">要执行的增删改的SQL语句</param>     
         /// <param name="parameters">执行增删改语句所需要的参数</param>  
         /// <returns></returns>    
-        public int ExecuteNonQuery(string sql, DbParameter[] parameters)
+        public int ExecuteNonQuery(string sql, params DbParameter[] parameters)
         {
             List<DbParameter> list = new List<DbParameter>();
             if (parameters != null)
