@@ -55,24 +55,22 @@ namespace FileSystem
         {
             //加载个人文件目录结构
             LoadComboxPersonl();
-            LoadComboxDep();          
+            LoadComboxDep();
         }
 
         private void LoadComboxDep()
         {
             IList<Department> d = new DepBLL().GetAll();
-
             comboBox2.DataSource = d;
             comboBox2.ValueMember = "DepartmentID";
             comboBox2.DisplayMember = "DepartmentName";
-          
         }
 
         private void LoadComboxPersonl()
         {
-            this.comboBox1.Items.Add("个人文件");
+            //this.comboBox1.Items.Add("个人文件");
             IList<FileNode> fnList = new List<FileNode>();
-            AddChild(fnList, "    ", 1, -1);
+            AddChild(fnList, "   ", 0, -1);
             foreach (var fileNode in fnList)
             {
                 comboBox1.Items.Add(fileNode);
@@ -84,7 +82,7 @@ namespace FileSystem
                     FileNode o = fnList[i];
                     if (o.File.FileID == _id)
                     {
-                        this.comboBox1.SelectedIndex = (i + 1);       //因为做了一个假定的参数所以要+1
+                        this.comboBox1.SelectedIndex = (i);       //因为做了一个假定的参数所以要+1
                         break;
                     }
                 }
@@ -93,7 +91,7 @@ namespace FileSystem
                 this.comboBox1.SelectedIndex = 0;
             if (comboBox1.Items.Count > 0)
             {
-                lblCatelog.Text = comboBox1.Text;
+                lblCatelog.Text = comboBox1.Text.Trim();
             }
         }
 
@@ -112,7 +110,7 @@ namespace FileSystem
                     File = file,
                     ChartStr = chartStr,
                 });
-                AddChild(fnList, ch, deep+1, file.FileID);
+                AddChild(fnList, ch, deep + 1, file.FileID);
             }
         }
 
@@ -158,29 +156,8 @@ namespace FileSystem
                 NewFileId = new FileBLL().MaxId();
                 if (check)
                 {
-                    //用户和文件中间表继续写入数据
-                    //var c = new ACLFileUserBLL().Add(
-                    //    new ACL_File_User
-                    //    {
-                    //        FileID = NewFileId,
-                    //        UserID = LoginUser.UserId
-                    //    }
-                    //);
-                    //if (c)
-                    //{
-                    MessageBox.Show("文件添加成功！", "系统提示");
                     _status = "personal";
-                        //if (Fid > 0)
-                        //{
-                        //    frmPermissionConfig frm = new frmPermissionConfig(Fid);
-                        //    if (frm.ShowDialog() == DialogResult.OK)
-                        //    {
-                                this.DialogResult = System.Windows.Forms.DialogResult.OK;
-                        //    }
-                        //}
-                    //}
-                    //else
-                    //    MessageBox.Show("文件添加失败！", "系统提示");
+                    this.DialogResult = System.Windows.Forms.DialogResult.OK;
                 }
                 else
                     MessageBox.Show("文件添加失败！", "系统提示");
@@ -211,7 +188,8 @@ namespace FileSystem
         {
             get { return _id; }
         }
-        public int NewFileId {
+        public int NewFileId
+        {
             get { return _newfileid; }
             set { _newfileid = value; }
         }
@@ -231,11 +209,13 @@ namespace FileSystem
         {
             get { return _fname; }
         }
-        public bool Refurbishdep {
+        public bool Refurbishdep
+        {
             get { return refurbishdep; }
             set { refurbishdep = value; }
         }
-        public int Depid {
+        public int Depid
+        {
             get { return _depid; }
             set { _depid = value; }
         }
@@ -252,6 +232,7 @@ namespace FileSystem
             var t = comboBox2.SelectedItem as Department;
             if (t != null)
             {
+                if (comboBox2.SelectedItem as Department == null) return;
                 _depid = (comboBox2.SelectedItem as Department).DepartmentID;
                 var fname = comboBox2.Text.Trim();
                 _fname = fname;
@@ -264,51 +245,15 @@ namespace FileSystem
                     FileCreateTime = DateTime.Now,
                     FileExt = aLastName,
                     FileData = tmpfile,
+                    FilePID = -1,
                     FileSize = tmpfile.Length,
                     UserID = LoginUser.UserId
                 };
-                var check = new FileBLL().AddFileDep(file);
-                //得到文件的ID
-                NewFileId = new FileBLL().MaxId();
-                if (check)
+                NewFileId = new FileBLL().AddFileDep(file, _depid);
+                if (NewFileId > 0)
                 {
-                    //用户和文件中间表继续写入数据
-                    var c = new ACLFileUserBLL().Add(
-                        new ACL_File_User
-                        {
-                            FileID = NewFileId,
-                            UserID = LoginUser.UserId
-                        }
-                    );
-
-                    if (c)
-                    {
-                        refurbishdep = new FileDepartmentBLL().Add(
-                            new File_Department
-                            {
-                                FileID = NewFileId,
-                                DepartmentID = _depid
-                            }
-                            );
-                        if (refurbishdep)
-                        {
-                            //MessageBox.Show("文件添加成功！", "系统提示");
-                            _status = "personal";
-                            //if (SelectFid > 0)
-                            //{
-                            //    frmPermissionConfig frm = new frmPermissionConfig(SelectFid);
-                            //    if (frm.ShowDialog() == DialogResult.OK)
-                            //    {
-                            this.DialogResult = System.Windows.Forms.DialogResult.OK;
-                            //    }
-                            //}
-                        }
-                        else
-                            MessageBox.Show("文件添加失败！", "系统提示");
-                    }
-                    else
-                        MessageBox.Show("文件添加失败！", "系统提示");
-
+                    _status = "department";
+                    this.DialogResult = System.Windows.Forms.DialogResult.OK;
                 }
                 else
                     MessageBox.Show("文件添加失败！", "系统提示");

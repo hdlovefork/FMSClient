@@ -28,37 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmOffice));
-            this.axFramerControl1 = new AxDSOFramer.AxFramerControl();
-            ((System.ComponentModel.ISupportInitialize)(this.axFramerControl1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // axFramerControl1
-            // 
-            this.axFramerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.axFramerControl1.Enabled = true;
-            this.axFramerControl1.Location = new System.Drawing.Point(0, 0);
-            this.axFramerControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.axFramerControl1.Name = "axFramerControl1";
-            this.axFramerControl1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axFramerControl1.OcxState")));
-            this.axFramerControl1.Size = new System.Drawing.Size(1699, 939);
-            this.axFramerControl1.TabIndex = 0;
             // 
             // frmOffice
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1699, 939);
-            this.Controls.Add(this.axFramerControl1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ClientSize = new System.Drawing.Size(1, 1);
+            this.ForeColor = System.Drawing.Color.Transparent;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmOffice";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Office文件";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmOffice_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.axFramerControl1)).EndInit();
             this.ResumeLayout(false);
 
         }

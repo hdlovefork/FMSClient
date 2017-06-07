@@ -15,6 +15,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
@@ -29,6 +30,23 @@ namespace FileSystem
             InitializeComponent();
         }
 
+        Process _process;
+        string _filePath;
+        string _fileName;
+
+        public frmOffice(string filePath, string fileName)
+        {
+            InitializeComponent();
+            _filePath = filePath;
+            _fileName = fileName;
+        }
+
+        public new void Show()
+        {
+            base.Show();
+            //_process = Process.Start(_filePath);
+        }
+
         public frmOffice(string p, bool readOnly, string ext)
         {
             InitializeComponent();
@@ -40,7 +58,7 @@ namespace FileSystem
         private void Form1_Load(object sender, EventArgs e)
         {
             // this.axFramerControl1.Open(path,false,LoadOpenFileType(mExt),null,null);
-            this.axFramerControl1.Open(path, mReadOnly, null, null, null);
+            //this.axFramerControl2.Open(path, mReadOnly, null, null, null);
             //this.webBrowser1.Navigate(path);
         }
 
@@ -90,5 +108,14 @@ namespace FileSystem
         public bool mReadOnly { get; set; }
 
         public string mExt { get; set; }
+
+        private void frmOffice_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            try
+            {
+               // _process.Kill();
+            }
+            catch { }
+        }
     }
 }

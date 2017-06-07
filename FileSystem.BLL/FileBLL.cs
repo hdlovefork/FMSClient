@@ -25,33 +25,57 @@ namespace FileSystem.BLL
     public class FileBLL
     {
         //权限插入
-        public bool AddPermission(int FileId, int FileRole) {
+        public bool AddPermission(int FileId, int FileRole)
+        {
             return new FileService().AddPermission(FileId, FileRole);
         }
-        public bool AddOtherPer(int FileId, int FileOther) {
+        public bool AddOtherPer(int FileId, int FileOther)
+        {
             return new FileService().AddOtherPer(FileId, FileOther);
         }
-        public bool UpdateFileArchive(int fileId, bool status) {
+        public bool UpdateFileArchive(int fileId, bool status)
+        {
             return new FileService().UpdateFileArchive(fileId, status);
         }
 
-        public bool AddFileDep(File file)
+        public int AddFileDep(File file, int depID)
         {
-            return new FileService().AddFileDep(file);
+            int fid = 0;
+            //添加新文件
+            bool ok = new FileService().AddFile(file);
+            if (ok)
+            {
+                fid = MaxId();
+                if (fid <= 0) return fid;
+                //将新文件添加到文件-部门中间表
+                ok = new FileDepartmentBLL().AddFilDepartment(
+                          new File_Department
+                          {
+                              FileID = fid,
+                              DepartmentID = depID,
+                              FilePermission=1
+                          }
+                          );
+            }
+            return fid;
         }
 
-        public List<File> GetOne(int fileId) {
+        public List<File> GetOne(int fileId)
+        {
             return new FileService().GetOne(fileId);
         }
 
-        public IList<File> GetFilePersonlTree(int pid,int uid) {
+        public IList<File> GetFilePersonlTree(int pid, int uid)
+        {
             return new FileService().GetFilePersonlTree(pid, uid);
         }
-        public DataTable GetFileByDepartment(int DepartmentId) {
+        public DataTable GetFileByDepartment(int DepartmentId)
+        {
             return new FileService().GetFileByDepartment(DepartmentId);
-        
+
         }
-        public DataTable GetFileByUserId(int UserId) {
+        public DataTable GetFileByUserId(int UserId)
+        {
             return new FileService().GetFileByUserId(UserId);
         }
 
@@ -77,7 +101,8 @@ namespace FileSystem.BLL
             return new FileService().AddFile(file);
         }
 
-        public int MaxId() {
+        public int MaxId()
+        {
             return new FileService().MaxId();
         }
 
@@ -97,10 +122,26 @@ namespace FileSystem.BLL
         public bool DeleteCatalog(int fileId)
         {
             return new FileService().DeleteCatalog(fileId);
-        
+
         }
-        public bool UpdateCatalog(string BFileName, string LFileName) {
-            return new FileService().UpdateCatalog(BFileName,LFileName);
+        public bool UpdateCatalog(string BFileName, string LFileName)
+        {
+            return new FileService().UpdateCatalog(BFileName, LFileName);
+        }
+
+        public bool UpdateCatalog(File file)
+        {
+            return new FileService().UpdateCatelog(file);
+        }
+
+        public List<File_Department> GetDepShareFiles(int fileID)
+        {
+            return new FileService().GetDepByFID(fileID);
+        }
+
+        public List<ACL_File_User> GetUserShareFiles(int fileID)
+        {
+            return new FileService().GetUsersByFID(fileID);
         }
     }
 }

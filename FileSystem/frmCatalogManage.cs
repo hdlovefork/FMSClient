@@ -27,6 +27,7 @@ namespace FileSystem
     {
         TreeNode _selectedNode = null;//保存最后一次点击的节点
         bool _bAdd = false;//当前是否正在添加目录
+
         public frmCatalogManage()
         {
             InitializeComponent();
@@ -39,19 +40,19 @@ namespace FileSystem
                 TreeNode node = new TreeNode();             //定义根节点
                 node.Name = "-1";                            //将类Model的各个属性赋值给根节点
                 node.Text = "目录管理";
-                 this.skinTreeView1.Nodes.Add(node);
-                CreatCatalogTreeByPid(node,node.Name, LoginUser.UserId);
-  
+                this.skinTreeView1.Nodes.Add(node);
+                CreatCatalogTreeByPid(node, node.Name, LoginUser.UserId);
                 skinTreeView1.ExpandAll();
             }
-            catch { 
-            
-            
+            catch
+            {
+
+
             }
-            
+
         }
-        
-        private void CreatCatalogTreeByPid(TreeNode node, string p,int UserId)
+
+        private void CreatCatalogTreeByPid(TreeNode node, string p, int UserId)
         {
 
             IList<File> lst = new FileBLL().GetCatalogTree(Convert.ToInt32(p), UserId);
@@ -64,10 +65,10 @@ namespace FileSystem
                     n.Text = file.FileName.ToString();
                     n.Tag = file;
                     node.Nodes.Add(n);
-                    CreatCatalogTreeByPid(n, n.Name,UserId);    //用递归的方法添加完整的树节点
+                    CreatCatalogTreeByPid(n, n.Name, UserId);    //用递归的方法添加完整的树节点
                 }
             }
-        
+
         }
 
         private void frmCatalogManage_Load(object sender, EventArgs e)
@@ -77,26 +78,37 @@ namespace FileSystem
 
         private void skinTreeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            File f = e.Node.Tag as File;
-            _selectedNode = e.Node;//保存当前选中的节点
-            if (_selectedNode.Name == "-1")
+            _selectedNode = e.Node; //保存当前选中的节点
+            ShowSelectedNode(_selectedNode);
+        }
+
+        /// <summary>
+        /// 在右边显示当前选中的目录名称
+        /// </summary>
+        /// <param name="node"></param>
+        private void ShowSelectedNode(TreeNode node)
+        {
+            if (node == null) return;
+            if (node.Name == "-1")
             {
-                this.skinTextBox1.SkinTxt.Text = "目录管理";
-            }else
-            {
-                if (f == null) return;
-                this.skinTextBox1.SkinTxt.Text = f.FileName;
+                this.txtFileName.SkinTxt.Text = "目录管理";
             }
-            
+            else
+            {
+                File f = node.Tag as File;
+                if (f == null) return;
+                this.txtFileName.SkinTxt.Text = f.FileName;
+            }
         }
 
         private void 新建ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.skinGroupBox2.Enabled = true;
             _bAdd = true;
-            
+            txtFileName.SkinTxt.Text = string.Empty;
         }
 
+        private bool _hasUpdate;//记录是否成功添加/更新目录到数据库
         private void skinButton1_Click(object sender, EventArgs e)
         {
             if (_bAdd)
@@ -110,98 +122,64 @@ namespace FileSystem
                 if (!UpdateCatalog()) return;
             }
             this.skinGroupBox2.Enabled = false;
+            _hasUpdate = true;
+            ReloadTree();
         }
         private bool AddFunction()
         {
-            bool pd = false;
-            if (_selectedNode.Name != "-1")
+            bool ok = false;
+            File file = _selectedNode.Tag as File;
+            int? fileID = file?.FileID;
+            fileID = fileID ?? -1;
+            File f1 = new File
             {
-                File f = _selectedNode.Tag as File;
-                File f1 = new File
-                {
-                    FileName = this.skinTextBox1.SkinTxt.Text,
-                    FileSize = 0,
-                    FilePID = f.FileID,
-
-                };
-                bool ok = new FileBLL().AddCatalogFile(f1);
-                if (ok)
-                {
-                    ACL_File_User acl = new ACL_File_User()
-                    {
-                        FileID = new FileBLL().MaxId(),
-                        UserID = LoginUser.UserId
-                    };
-                    bool o = new ACLFileUserBLL().AddFilUser(acl);
-                    if (o)
-                    {
-                        ReloadTree();
-                        pd = true;
-                        this.DialogResult = DialogResult.OK;
-                    }
-                    else
-                    {
-                        MessageBox.Show("添加失败");
-                    }
-                }
-            }
-            if (_selectedNode.Name == "-1")
+                FileName = this.txtFileName.SkinTxt.Text,
+                FileSize = 0,
+                FilePID = fileID,
+                UserID = LoginUser.UserId,
+            };
+            ok = new FileBLL().AddCatalogFile(f1);
+            if (!ok)
             {
-                File f1 = new File
-                {
-                    FileName = this.skinTextBox1.SkinTxt.Text,
-                    FileSize = 0,
-                    FilePID = -1,
-
-                };
-                bool ok = new FileBLL().AddCatalogFile(f1);
-                if (ok)
-                {
-                    ACL_File_User acl = new ACL_File_User()
-                    {
-                        FileID = new FileBLL().MaxId(),
-                        UserID = LoginUser.UserId
-                    };
-                    bool o = new ACLFileUserBLL().AddFilUser(acl);
-                    if (o)
-                    {
-                        ReloadTree();
-                        pd = true;
-                        this.DialogResult = DialogResult.OK;
-                    }
-                    else
-                    {
-                        MessageBox.Show("添加失败");
-                    }
-                }
+                MessageBox.Show("添加失败");
             }
-            return pd;
+            return ok;
         }
 
 
-        private bool UpdateCatalog() {
+        private bool UpdateCatalog()
+        {
             this.skinGroupBox2.Enabled = true;
             if (_selectedNode == null) return true;
             if (_selectedNode.Name == "-1")
             {
                 MessageBox.Show("主目录不可修改");
+                return false;
             }
-            string bname = _selectedNode.Text;
-            string lname = this.skinTextBox1.SkinTxt.Text.Trim();
+            string lname = this.txtFileName.SkinTxt.Text.Trim();
             if (string.IsNullOrWhiteSpace(lname))
             {
                 MessageBox.Show("目录名不能为空");
-                return  false;
+                return false;
             }
+            File file = _selectedNode.Tag as File;
+            int? fileID = file?.FileID;
+            if (fileID == null) return false;
+           
+            File f = new File()
+            {
+                FileID = (int)fileID,
+                FileName = lname
+            };
             //更新的方法
-            bool ok = new FileBLL().UpdateCatalog(lname,bname);
+            bool ok = new FileBLL().UpdateCatalog(f);
             if (ok)
             {
                 MessageBox.Show("更新成功");
                 ReloadTree();
             }
-            return true;
-          }
+            return ok;
+        }
 
 
         private void ReloadTree()
@@ -214,18 +192,19 @@ namespace FileSystem
         private void 删除ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (_selectedNode == null) return;
-            if (_selectedNode.Name == "-1") {
+            if (_selectedNode.Name == "-1")
+            {
                 MessageBox.Show("主目录不可删除");
             }
             File f = _selectedNode.Tag as File;
             if (f == null) return;
-            if (new FileBLL().GetFileByUser(LoginUser.UserId,f.FileID).Rows.Count > 0)
+            if (new FileBLL().GetFileByUser(LoginUser.UserId, f.FileID).Rows.Count > 0)
             {
                 MessageBox.Show("请先删除该目录下的文件", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             //从数据库中删除
-            DialogResult d = MessageBox.Show("是否删除 "+f.FileName+" 目录？","温馨提示",MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
+            DialogResult d = MessageBox.Show("是否删除 " + f.FileName + " 目录？", "温馨提示", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (d == DialogResult.Yes)
             {
                 bool ok = new FileBLL().DeleteCatalog(f.FileID);
@@ -234,20 +213,40 @@ namespace FileSystem
                 {
                     this.skinTreeView1.Nodes.Remove(_selectedNode);
                     ReloadTree();
+                    _hasUpdate = true;
                 }
             }
         }
 
         private void 编辑ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            _bAdd = false;
             this.skinGroupBox2.Enabled = true;
         }
 
         private void skinButton2_Click(object sender, EventArgs e)
         {
             this.skinGroupBox2.Enabled = false;
+            ShowSelectedNode(_selectedNode);
         }
-       
+
+        private void skinTreeView1_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left) return;
+            TreeView tv = sender as TreeView;
+            if (tv == null) return;
+            TreeNode node = tv.GetNodeAt(e.X, e.Y);
+            if (node == null) return;
+            tv.SelectedNode = node;
+        }
+
+        private void skinButton3_Click(object sender, EventArgs e)
+        {
+            if (_hasUpdate)
+                DialogResult = DialogResult.OK;
+            else
+                DialogResult = DialogResult.Cancel;
+        }
     }
 }
 

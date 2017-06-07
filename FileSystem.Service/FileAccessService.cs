@@ -13,6 +13,7 @@
 *****************************************************************/
 using FileSystem.DAL;
 using FileSystem.Entity;
+using FileSystem.Service.Entity;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
@@ -22,7 +23,7 @@ using System.Text;
 
 namespace FileSystem.Service
 {
-    internal class FileAccessService : BaseService<File>, IFileAccessService
+    public class FileAccessService : BaseService<File>, IFileAccessService
     {
         public override IQueryInfo QueryInfo { 
             get { return new BaseQueryInfo("File", null); } 
@@ -33,24 +34,19 @@ namespace FileSystem.Service
             return FindSingle("FileID=@FileID", new SqlParameter("@FileID", fileID));
         }
 
-        internal List<Role> GetRolesByFID(int fileID)
-        {
-            return Find<Role>(new BaseQueryInfo("View_File_Role", null), "FileID=@FileID", new SqlParameter("@FileID",fileID));
-        }
-
-        internal List<Role> GetRolesByUID(int uid)
-        {
-            return Find<Role>(new BaseQueryInfo("View_User_Role", null), "UserID=@UserID", new SqlParameter("@UserID", uid));
-        }
-
-        public List<Department> GetDepartmentByFID(int fileID){
-           return Find<Department>(new BaseQueryInfo("View_File_Department",null),"FileID=@FileID",new SqlParameter("@FileID",fileID));
+        public List<FileDepartment> GetDepartmentByFID(int fileID){
+           return Find<FileDepartment>(new BaseQueryInfo("View_File_Department",null),"FileID=@FileID",new SqlParameter("@FileID",fileID));
         }
 
         public List<Department> GetDepartmentByUID(int uid)
         {
             return Find<Department>(new BaseQueryInfo("View_User_Department_Position", null), "UserID=@UserID", new SqlParameter("@UserID", uid));
         }
+
+        public FileUser GetFileShare(int uid,int fileID)
+        {
+            return FindSingle<FileUser>(new BaseQueryInfo("ACL_File_User",null),"UserID=@UserID AND FileID=@FileID", new SqlParameter("@UserID", uid), new SqlParameter("@FileID", fileID));
+        }     
 
         internal bool IsShareFile(int uid, int fileID)
         {

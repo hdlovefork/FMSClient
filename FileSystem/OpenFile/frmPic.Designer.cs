@@ -36,23 +36,27 @@
             // skinPictureBox1
             // 
             this.skinPictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.skinPictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.skinPictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.skinPictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.skinPictureBox1.Location = new System.Drawing.Point(27, 24);
+            this.skinPictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.skinPictureBox1.Name = "skinPictureBox1";
-            this.skinPictureBox1.Size = new System.Drawing.Size(551, 358);
+            this.skinPictureBox1.Size = new System.Drawing.Size(735, 448);
             this.skinPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.skinPictureBox1.TabIndex = 0;
             this.skinPictureBox1.TabStop = false;
+            this.skinPictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.skinPictureBox1_MouseDown);
+            this.skinPictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.skinPictureBox1_MouseMove);
+            this.skinPictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.skinPictureBox1_MouseUp);
             // 
             // frmPic
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(551, 358);
+            this.ClientSize = new System.Drawing.Size(791, 493);
             this.Controls.Add(this.skinPictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MinimizeBox = false;
             this.Name = "frmPic";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

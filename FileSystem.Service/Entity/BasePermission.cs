@@ -1,7 +1,7 @@
 ﻿/**************************************************************** 
- * 作    者：陶湘程
+ * 作    者：黄鼎 
  * CLR 版本：4.0.30319.42000 
- * 创建时间：2017-05-11 14:13:04 
+ * 创建时间：2017-05-27 19:00:04 
  * 当前版本：1.0.0.0
  *  
  * 描述说明： 
@@ -11,27 +11,16 @@
 ***************************************************************** 
  * Copyright @ Dean 2017 All rights reserved 
 *****************************************************************/
+using FileSystem.Entity;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
-using FileSystem.Model;
 
-namespace FileSystem.Data.SqlServer
+namespace FileSystem.Service.Entity
 {
-    public class AuthAccessService:BaseService<File>
+    public class BasePermission:BaseEntity
     {
-        public override IQueryInfo QueryInfo
-        {
-            get { return new BaseQueryInfo("Comment"); }
-        }
-
-        public bool Auth(int uid, File file, FileAccess access)
-        {
-            return false;
-        }
-
-
-
-        
+        public int FilePermission { get; set; }
     }
 }

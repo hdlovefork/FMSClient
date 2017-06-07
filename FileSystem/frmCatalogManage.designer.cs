@@ -37,17 +37,18 @@
             this.新建ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.编辑ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.删除ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.skinGroupBox2 = new CCWin.SkinControl.SkinGroupBox();
+            this.imageList2 = new System.Windows.Forms.ImageList(this.components);
             this.skinButton2 = new CCWin.SkinControl.SkinButton();
             this.skinButton1 = new CCWin.SkinControl.SkinButton();
-            this.skinTextBox1 = new CCWin.SkinControl.SkinTextBox();
-            this.skinLabel1 = new CCWin.SkinControl.SkinLabel();
+            this.txtFileName = new CCWin.SkinControl.SkinTextBox();
+            this.skinGroupBox2 = new CCWin.SkinControl.SkinGroupBox();
+            this.skinButton3 = new CCWin.SkinControl.SkinButton();
+            this.label1 = new System.Windows.Forms.Label();
             this.skinPanel2.SuspendLayout();
             this.skinGroupBox1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
+            this.txtFileName.SuspendLayout();
             this.skinGroupBox2.SuspendLayout();
-            this.skinTextBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // skinPanel2
@@ -68,7 +69,7 @@
             // skinGroupBox1
             // 
             this.skinGroupBox1.BackColor = System.Drawing.SystemColors.Menu;
-            this.skinGroupBox1.BorderColor = System.Drawing.Color.Transparent;
+            this.skinGroupBox1.BorderColor = System.Drawing.Color.Silver;
             this.skinGroupBox1.Controls.Add(this.skinTreeView1);
             this.skinGroupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.skinGroupBox1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -92,7 +93,7 @@
             this.skinTreeView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.skinTreeView1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.skinTreeView1.ImageIndex = 1;
-            this.skinTreeView1.ImageList = this.imageList1;
+            this.skinTreeView1.ImageList = this.imageList2;
             this.skinTreeView1.Location = new System.Drawing.Point(3, 29);
             this.skinTreeView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.skinTreeView1.Name = "skinTreeView1";
@@ -100,6 +101,7 @@
             this.skinTreeView1.Size = new System.Drawing.Size(510, 454);
             this.skinTreeView1.TabIndex = 0;
             this.skinTreeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.skinTreeView1_NodeMouseClick);
+            this.skinTreeView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.skinTreeView1_MouseClick);
             // 
             // contextMenuStrip1
             // 
@@ -109,74 +111,51 @@
             this.编辑ToolStripMenuItem,
             this.删除ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(182, 110);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(115, 82);
             // 
             // 新建ToolStripMenuItem
             // 
             this.新建ToolStripMenuItem.Name = "新建ToolStripMenuItem";
-            this.新建ToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.新建ToolStripMenuItem.Size = new System.Drawing.Size(114, 26);
             this.新建ToolStripMenuItem.Text = "新建";
             this.新建ToolStripMenuItem.Click += new System.EventHandler(this.新建ToolStripMenuItem_Click);
             // 
             // 编辑ToolStripMenuItem
             // 
             this.编辑ToolStripMenuItem.Name = "编辑ToolStripMenuItem";
-            this.编辑ToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.编辑ToolStripMenuItem.Size = new System.Drawing.Size(114, 26);
             this.编辑ToolStripMenuItem.Text = "编辑";
             this.编辑ToolStripMenuItem.Click += new System.EventHandler(this.编辑ToolStripMenuItem_Click);
             // 
             // 删除ToolStripMenuItem
             // 
             this.删除ToolStripMenuItem.Name = "删除ToolStripMenuItem";
-            this.删除ToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.删除ToolStripMenuItem.Size = new System.Drawing.Size(114, 26);
             this.删除ToolStripMenuItem.Text = "删除";
             this.删除ToolStripMenuItem.Click += new System.EventHandler(this.删除ToolStripMenuItem_Click);
             // 
-            // imageList1
+            // imageList2
             // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "folder_open.png");
-            this.imageList1.Images.SetKeyName(1, "folder.png");
-            // 
-            // skinGroupBox2
-            // 
-            this.skinGroupBox2.BackColor = System.Drawing.SystemColors.Control;
-            this.skinGroupBox2.BorderColor = System.Drawing.Color.Transparent;
-            this.skinGroupBox2.Controls.Add(this.skinButton2);
-            this.skinGroupBox2.Controls.Add(this.skinButton1);
-            this.skinGroupBox2.Controls.Add(this.skinTextBox1);
-            this.skinGroupBox2.Controls.Add(this.skinLabel1);
-            this.skinGroupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.skinGroupBox2.Enabled = false;
-            this.skinGroupBox2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.skinGroupBox2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.skinGroupBox2.Location = new System.Drawing.Point(516, 0);
-            this.skinGroupBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.skinGroupBox2.Name = "skinGroupBox2";
-            this.skinGroupBox2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.skinGroupBox2.RectBackColor = System.Drawing.SystemColors.Control;
-            this.skinGroupBox2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.skinGroupBox2.Size = new System.Drawing.Size(321, 485);
-            this.skinGroupBox2.TabIndex = 2;
-            this.skinGroupBox2.TabStop = false;
-            this.skinGroupBox2.Text = "功能详细信息";
-            this.skinGroupBox2.TitleBorderColor = System.Drawing.Color.Transparent;
-            this.skinGroupBox2.TitleRectBackColor = System.Drawing.Color.Transparent;
+            this.imageList2.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList2.ImageStream")));
+            this.imageList2.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList2.Images.SetKeyName(0, "book_open.png");
+            this.imageList2.Images.SetKeyName(1, "book.png");
+            this.imageList2.Images.SetKeyName(2, "folder_open.png");
+            this.imageList2.Images.SetKeyName(3, "folder.png");
             // 
             // skinButton2
             // 
             this.skinButton2.BackColor = System.Drawing.Color.Transparent;
             this.skinButton2.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.skinButton2.DownBack = null;
-            this.skinButton2.Location = new System.Drawing.Point(171, 189);
+            this.skinButton2.Location = new System.Drawing.Point(175, 128);
             this.skinButton2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.skinButton2.MouseBack = null;
             this.skinButton2.Name = "skinButton2";
             this.skinButton2.NormlBack = null;
             this.skinButton2.Size = new System.Drawing.Size(75, 35);
             this.skinButton2.TabIndex = 8;
-            this.skinButton2.Text = "放弃";
+            this.skinButton2.Text = " 放弃";
             this.skinButton2.UseVisualStyleBackColor = false;
             this.skinButton2.Click += new System.EventHandler(this.skinButton2_Click);
             // 
@@ -185,7 +164,7 @@
             this.skinButton1.BackColor = System.Drawing.Color.Transparent;
             this.skinButton1.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.skinButton1.DownBack = null;
-            this.skinButton1.Location = new System.Drawing.Point(59, 189);
+            this.skinButton1.Location = new System.Drawing.Point(40, 128);
             this.skinButton1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.skinButton1.MouseBack = null;
             this.skinButton1.Name = "skinButton1";
@@ -196,48 +175,86 @@
             this.skinButton1.UseVisualStyleBackColor = false;
             this.skinButton1.Click += new System.EventHandler(this.skinButton1_Click);
             // 
-            // skinTextBox1
+            // txtFileName
             // 
-            this.skinTextBox1.BackColor = System.Drawing.Color.Transparent;
-            this.skinTextBox1.DownBack = null;
-            this.skinTextBox1.Icon = null;
-            this.skinTextBox1.IconIsButton = false;
-            this.skinTextBox1.IconMouseState = CCWin.SkinClass.ControlState.Normal;
-            this.skinTextBox1.Location = new System.Drawing.Point(12, 115);
-            this.skinTextBox1.Margin = new System.Windows.Forms.Padding(0);
-            this.skinTextBox1.MinimumSize = new System.Drawing.Size(28, 28);
-            this.skinTextBox1.MouseBack = null;
-            this.skinTextBox1.MouseState = CCWin.SkinClass.ControlState.Normal;
-            this.skinTextBox1.Name = "skinTextBox1";
-            this.skinTextBox1.NormlBack = null;
-            this.skinTextBox1.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.skinTextBox1.Size = new System.Drawing.Size(289, 40);
+            this.txtFileName.BackColor = System.Drawing.Color.Transparent;
+            this.txtFileName.DownBack = null;
+            this.txtFileName.Icon = null;
+            this.txtFileName.IconIsButton = false;
+            this.txtFileName.IconMouseState = CCWin.SkinClass.ControlState.Normal;
+            this.txtFileName.Location = new System.Drawing.Point(111, 68);
+            this.txtFileName.Margin = new System.Windows.Forms.Padding(0);
+            this.txtFileName.MinimumSize = new System.Drawing.Size(28, 28);
+            this.txtFileName.MouseBack = null;
+            this.txtFileName.MouseState = CCWin.SkinClass.ControlState.Normal;
+            this.txtFileName.Name = "txtFileName";
+            this.txtFileName.NormlBack = null;
+            this.txtFileName.Padding = new System.Windows.Forms.Padding(5);
+            this.txtFileName.Size = new System.Drawing.Size(174, 39);
             // 
-            // skinTextBox1.BaseText
+            // txtFileName.txtName
             // 
-            this.skinTextBox1.SkinTxt.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.skinTextBox1.SkinTxt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.skinTextBox1.SkinTxt.Font = new System.Drawing.Font("微软雅黑", 9.75F);
-            this.skinTextBox1.SkinTxt.Location = new System.Drawing.Point(5, 5);
-            this.skinTextBox1.SkinTxt.Multiline = true;
-            this.skinTextBox1.SkinTxt.Name = "BaseText";
-            this.skinTextBox1.SkinTxt.Size = new System.Drawing.Size(279, 30);
-            this.skinTextBox1.SkinTxt.TabIndex = 0;
-            this.skinTextBox1.SkinTxt.WaterColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
-            this.skinTextBox1.SkinTxt.WaterText = "";
-            this.skinTextBox1.TabIndex = 1;
+            this.txtFileName.SkinTxt.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtFileName.SkinTxt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtFileName.SkinTxt.Font = new System.Drawing.Font("微软雅黑", 9.75F);
+            this.txtFileName.SkinTxt.Location = new System.Drawing.Point(5, 5);
+            this.txtFileName.SkinTxt.Multiline = true;
+            this.txtFileName.SkinTxt.Name = "txtName";
+            this.txtFileName.SkinTxt.Size = new System.Drawing.Size(164, 29);
+            this.txtFileName.SkinTxt.TabIndex = 0;
+            this.txtFileName.SkinTxt.WaterColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
+            this.txtFileName.SkinTxt.WaterText = "";
+            this.txtFileName.TabIndex = 1;
             // 
-            // skinLabel1
+            // skinGroupBox2
             // 
-            this.skinLabel1.AutoSize = true;
-            this.skinLabel1.BackColor = System.Drawing.Color.Transparent;
-            this.skinLabel1.BorderColor = System.Drawing.Color.White;
-            this.skinLabel1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.skinLabel1.Location = new System.Drawing.Point(7, 68);
-            this.skinLabel1.Name = "skinLabel1";
-            this.skinLabel1.Size = new System.Drawing.Size(166, 27);
-            this.skinLabel1.TabIndex = 0;
-            this.skinLabel1.Text = "文件夹名称（*）:";
+            this.skinGroupBox2.BackColor = System.Drawing.SystemColors.Control;
+            this.skinGroupBox2.BorderColor = System.Drawing.Color.Silver;
+            this.skinGroupBox2.Controls.Add(this.txtFileName);
+            this.skinGroupBox2.Controls.Add(this.skinButton1);
+            this.skinGroupBox2.Controls.Add(this.skinButton2);
+            this.skinGroupBox2.Controls.Add(this.label1);
+            this.skinGroupBox2.Enabled = false;
+            this.skinGroupBox2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.skinGroupBox2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.skinGroupBox2.Location = new System.Drawing.Point(522, 11);
+            this.skinGroupBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.skinGroupBox2.Name = "skinGroupBox2";
+            this.skinGroupBox2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.skinGroupBox2.RectBackColor = System.Drawing.SystemColors.Control;
+            this.skinGroupBox2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.skinGroupBox2.Size = new System.Drawing.Size(303, 186);
+            this.skinGroupBox2.TabIndex = 2;
+            this.skinGroupBox2.TabStop = false;
+            this.skinGroupBox2.Text = " 编辑目录";
+            this.skinGroupBox2.TitleBorderColor = System.Drawing.Color.Transparent;
+            this.skinGroupBox2.TitleRectBackColor = System.Drawing.Color.Transparent;
+            // 
+            // skinButton3
+            // 
+            this.skinButton3.BackColor = System.Drawing.Color.Transparent;
+            this.skinButton3.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.skinButton3.DownBack = null;
+            this.skinButton3.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.skinButton3.Location = new System.Drawing.Point(742, 439);
+            this.skinButton3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.skinButton3.MouseBack = null;
+            this.skinButton3.Name = "skinButton3";
+            this.skinButton3.NormlBack = null;
+            this.skinButton3.Size = new System.Drawing.Size(75, 35);
+            this.skinButton3.TabIndex = 8;
+            this.skinButton3.Text = " 关闭";
+            this.skinButton3.UseVisualStyleBackColor = false;
+            this.skinButton3.Click += new System.EventHandler(this.skinButton3_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 73);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(112, 27);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "目录名称：";
             // 
             // frmCatalogManage
             // 
@@ -245,6 +262,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(837, 485);
             this.Controls.Add(this.skinGroupBox2);
+            this.Controls.Add(this.skinButton3);
             this.Controls.Add(this.skinPanel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -259,10 +277,10 @@
             this.skinPanel2.ResumeLayout(false);
             this.skinGroupBox1.ResumeLayout(false);
             this.contextMenuStrip1.ResumeLayout(false);
+            this.txtFileName.ResumeLayout(false);
+            this.txtFileName.PerformLayout();
             this.skinGroupBox2.ResumeLayout(false);
             this.skinGroupBox2.PerformLayout();
-            this.skinTextBox1.ResumeLayout(false);
-            this.skinTextBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -272,17 +290,16 @@
         private CCWin.SkinControl.SkinPanel skinPanel2;
         public CCWin.SkinControl.SkinGroupBox skinGroupBox1;
         private CCWin.SkinControl.SkinTreeView skinTreeView1;
-        public CCWin.SkinControl.SkinGroupBox skinGroupBox2;
-        private CCWin.SkinControl.SkinTextBox skinTextBox1;
-        private CCWin.SkinControl.SkinLabel skinLabel1;
+        private CCWin.SkinControl.SkinTextBox txtFileName;
         private CCWin.SkinControl.SkinButton skinButton2;
         private CCWin.SkinControl.SkinButton skinButton1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 新建ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 编辑ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 删除ToolStripMenuItem;
-        private System.Windows.Forms.ImageList imageList1;
-
-
+        private System.Windows.Forms.ImageList imageList2;
+        public CCWin.SkinControl.SkinGroupBox skinGroupBox2;
+        private System.Windows.Forms.Label label1;
+        private CCWin.SkinControl.SkinButton skinButton3;
     }
 }

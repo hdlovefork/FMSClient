@@ -67,12 +67,9 @@ namespace FileSystem.Data.SqlServer
 
         public DataTable GetFileByUserId(int UserId)
         {
-            string sql = string.Format(@"select a.FileID,a.FileName,a.FileExt,a.FileSize,a.FileCreateTime,b.UserRealName from View_File_User a
-                                         inner join [User] b 
-                                         on a.UserID = b.UserID
-                                         where 1>0 
-                                         and a.UserId ={0} 
-                                         and a.FileExt is not null ", UserId);
+            string sql = string.Format(@"select FileID,FileName,FileExt,FileSize,FileCreateTime,UserRealName from View_File
+                                         WHERE UserId ={0} 
+                                         AND FileExt is not null", UserId);
             DataTable d = db.ExecuteDataTable(sql, null);
             return d;
         }
@@ -98,10 +95,9 @@ namespace FileSystem.Data.SqlServer
         //Add By 陶湘程查询文件
         public DataTable FindFile(ICollection<WordInfo> words)
         {
-            string sql = @"select a.FileID,a.FileName,a.FileExt,a.FileSize,a.FileCreateTime,
-                         b.UserRealName
-                        from View_File_User a
-                        inner join [User] b on a.UserID = b.UserID
+            string sql = @"select FileID,FileName,FileExt,FileSize,FileCreateTime,
+                         UserRealName
+                        from View_File 
                         where (";
             foreach (var p in words)
             {
@@ -116,7 +112,7 @@ namespace FileSystem.Data.SqlServer
         //Add By 陶湘程查询文件
         public DataTable SeniorFindFile(ICollection<WordInfo> words, string FileExt, string UserName, DateTime BTime, DateTime FTime)
         {
-            string sql = "select a.FileID,a.FileName,a.FileExt,a.FileSize,a.FileCreateTime,a.UserRealName from View_File_User a  ";
+            string sql = "SELECT FileID,FileName,FileExt,FileSize,FileCreateTime,UserRealName from [View_File] ";
             if (words != null && words.Count > 0)
             {
                 sql += "where(";
@@ -161,6 +157,7 @@ namespace FileSystem.Data.SqlServer
             dic.Add("delete from ACL_File_User where FileID=@FileID", new SqlParameter[] { new SqlParameter("@FileID", fileId) });
             dic.Add("delete from ACL_File_Department where FileID=@FileID", new SqlParameter[] { new SqlParameter("@FileID", fileId) });
             dic.Add("delete from Comment where FileID=@FileID", new SqlParameter[] { new SqlParameter("@FileID", fileId) });
+            dic.Add("delete from [File_User_Notice] where FileID=@FileID", new SqlParameter[] { new SqlParameter("@FileID", fileId) });
             dic.Add("delete from [File] where FileID=@FileID", new SqlParameter[] { new SqlParameter("@FileID", fileId) });
 
             int i = db.ExecuteNonQuery(dic);
@@ -188,11 +185,12 @@ namespace FileSystem.Data.SqlServer
 
         public bool AddCatalogFile(File file)
         {
-            string sql = string.Format("insert into [File](FileName,FileSize,FilePID) values(@FileName,@FileSize,@FilePID)");
+            string sql = string.Format("insert into [File](FileName,FileSize,FilePID,UserID) values(@FileName,@FileSize,@FilePID,@UserID)");
             return db.ExecuteNonQuery(sql, new SqlParameter[] {
                 new SqlParameter("@FileName",file.FileName),
                 new SqlParameter("@FileSize",file.FileSize),
-                new SqlParameter("@FilePID",file.FilePID)
+                new SqlParameter("@FilePID",file.FilePID),
+                new SqlParameter("@UserID",file.UserID),
             }) > 0;
         }
 
@@ -214,17 +212,24 @@ namespace FileSystem.Data.SqlServer
             return db.ExecuteNonQuery(dic) > 0;
         }
 
-        public bool AddFileDep(File file)
+        public bool UpdateCatelog(File file)
         {
-            string sql = string.Format("insert into [File](FileName,FileCreateTime,FileExt,FileData,FileSize,FileOwner,FileRole,FileOther) values(@FileName,@FileCreateTime,@FileExt,@FileData,@FileSize,@FileOwner,@FileRole,@FileOther)");
-            return db.ExecuteNonQuery(sql, new SqlParameter[] {
-                new SqlParameter("@FileName",file.FileName),
-                new SqlParameter("@FileCreateTime",file.FileCreateTime),
-                new SqlParameter("@FileExt",file.FileExt),
-                new SqlParameter("@FileData",file.FileData),
-                new SqlParameter("@FileSize",file.FileSize),
-            }) > 0;
-
+            string sql = "UPDATE [File] SET FileName=@FileName WHERE FileID=@FileID";
+            return db.ExecuteNonQuery(sql, new SqlParameter("@FileID", file.FileID),
+                new SqlParameter("@FileName", file.FileName)
+                ) > 0;
         }
+
+        public List<File_Department> GetDepByFID(int fid)
+        {
+           return Find<File_Department>(new BaseQueryInfo("View_File_Department","", false, "*", "FileID"), "FileID=@FileID", new SqlParameter("@FileID", fid));
+        }
+
+        public List<ACL_File_User> GetUsersByFID(int fid)
+        {
+            return Find<ACL_File_User>(new BaseQueryInfo("View_File_User","",false,"*","FileID"), "FileID=@FileID", new SqlParameter("@FileID", fid));
+        }
+
+       
     }
 }

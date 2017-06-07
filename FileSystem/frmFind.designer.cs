@@ -118,6 +118,7 @@
             // 
             this.skinButton2.BackColor = System.Drawing.Color.Silver;
             this.skinButton2.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.skinButton2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.skinButton2.DownBack = null;
             this.skinButton2.Location = new System.Drawing.Point(301, 95);
             this.skinButton2.MouseBack = null;
@@ -148,6 +149,7 @@
             // 
             this.rtfRichTextBox1.HiglightColor = CCWin.SkinControl.RtfRichTextBox.RtfColor.White;
             this.rtfRichTextBox1.Location = new System.Drawing.Point(100, 41);
+            this.rtfRichTextBox1.Multiline = false;
             this.rtfRichTextBox1.Name = "rtfRichTextBox1";
             this.rtfRichTextBox1.Size = new System.Drawing.Size(390, 32);
             this.rtfRichTextBox1.TabIndex = 3;
@@ -404,7 +406,6 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(546, 189);
             this.Controls.Add(this.skinTabControl1);
             this.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));

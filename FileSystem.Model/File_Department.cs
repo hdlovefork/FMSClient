@@ -26,5 +26,19 @@ namespace FileSystem.Model
 		/// 
 		/// </summary>
 		public int? DepartmentID { get; set; }
-	}
+
+        public int FilePermission { get; set; }
+
+        public string DepartmentName { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            File_Department fd = obj as File_Department;
+            if (fd != null)
+            {
+                return fd.FileID == FileID && fd.DepartmentID == DepartmentID;
+            }
+            return false;
+        }
+    }
 }

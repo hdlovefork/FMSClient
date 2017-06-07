@@ -23,7 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
+    <DebugType>none</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
@@ -41,6 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuthPermission.cs" />
+    <Compile Include="Entity\BasePermission.cs" />
+    <Compile Include="Entity\FileDepartment.cs" />
+    <Compile Include="Entity\FileUser.cs" />
     <Compile Include="FileAccess.cs" />
     <Compile Include="FileAccessService.cs" />
     <Compile Include="IFileAccessService.cs" />

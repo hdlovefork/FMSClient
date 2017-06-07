@@ -9,9 +9,19 @@ namespace FileSystem.BLL
 {
    public class FileDepartmentBLL
     {
-       public bool Add(File_Department ACL) {
-           return new FileDepartmentService().Add(ACL);
-       
-       }
+        public bool AddFilDepartment(File_Department acl)
+        {
+            return new FileDepartmentService().InsertFileDepartment(acl);
+        }
+
+        public bool UpdateFileDepartment(File_Department acl)
+        {
+            return new FileDepartmentService().UpdateFileDepartment(acl);
+        }
+
+        public bool DeleteFileDepartment(File_Department acl)
+        {
+            return new FileDepartmentService().DeleteFileDepartment(acl);
+        }
     }
 }

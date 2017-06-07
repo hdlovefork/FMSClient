@@ -24,7 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
+    <DebugType>none</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
@@ -48,7 +48,6 @@
     <Compile Include="Department.cs" />
     <Compile Include="DOC_Templete.cs" />
     <Compile Include="File.cs" />
-    <Compile Include="FileAccess.cs" />
     <Compile Include="File_Department.cs" />
     <Compile Include="File_Share.cs" />
     <Compile Include="File_Share_Notice.cs" />

@@ -20,6 +20,7 @@ using System.Text;
 using System.Windows.Forms;
 using PanGu;
 using FileSystem.BLL;
+
 namespace FileSystem
 {
     public partial class frmFind : Form
@@ -32,7 +33,8 @@ namespace FileSystem
 
         private void frmFind_Load(object sender, EventArgs e)
         {
-
+            dateTimePicker2.Value = DateTime.Now;
+            dateTimePicker1.Value = DateTime.Now.Date;
         }
 
         private void skinButton1_Click(object sender, EventArgs e)
@@ -50,7 +52,6 @@ namespace FileSystem
                 DataTable dt = new FileBLL().FindFile(words);
                 _dresult = dt;
                 DialogResult = DialogResult.OK;
-
             }
             else
             {
@@ -98,17 +99,14 @@ namespace FileSystem
             {
                 Segment segment = new Segment();
                 ICollection<WordInfo> words = segment.DoSegment(_key);
-                DataTable dt = new FileBLL().SeniorFindFile(words, this.comboBox1.Text, this.skinTextBox2.SkinTxt.Text, Convert.ToDateTime(this.dateTimePicker1.Text), Convert.ToDateTime(this.dateTimePicker2.Text));
+                DataTable dt = new FileBLL().SeniorFindFile(words, this.comboBox1.Text, this.skinTextBox2.SkinTxt.Text, Convert.ToDateTime(this.dateTimePicker1.Value), Convert.ToDateTime(this.dateTimePicker2.Value));
                 _dresult = dt;
                 DialogResult = DialogResult.OK;
-
             }
             else
             {
                 MessageBox.Show("请输入查询的关键词！", "系统提示");
-
             }
-            
         }
 
     }
