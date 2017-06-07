@@ -129,6 +129,11 @@ namespace FileSystem.BLL
             return new FileService().UpdateCatalog(BFileName, LFileName);
         }
 
+        public bool UpdateCatalog(File file)
+        {
+            return new FileService().UpdateCatelog(file);
+        }
+
         public List<File_Department> GetDepShareFiles(int fileID)
         {
             return new FileService().GetDepByFID(fileID);

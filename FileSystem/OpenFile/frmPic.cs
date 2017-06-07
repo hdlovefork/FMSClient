@@ -20,6 +20,11 @@ namespace FileSystem
             InitializeComponent();
         }
 
+        ~frmPic()
+        {
+            skinPictureBox1.Image.Dispose();
+        }
+
         private void SkinPictureBox1_MouseWheel(object sender, MouseEventArgs e)
         {
             skinPictureBox1.Width += e.Delta;

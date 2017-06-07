@@ -13,9 +13,10 @@ using System.Windows.Forms;
 
 namespace FileSystem
 {
+    public delegate void ClickEventHandler(object tag);
     public partial class FrmPopup : CCWin.CCSkinMain
     {
-        public static event System.EventHandler ClickNotice;
+        public static event ClickEventHandler ClickNotice;
 
         static FrmPopup _frmPopup;
         static Timer _timer1;
@@ -56,7 +57,6 @@ namespace FileSystem
             //int y = Screen.PrimaryScreen.WorkingArea.Bottom;
             //this.Location = new Point(x, y);
             AnimateWindow(this.Handle, 1000, AW_BLEND | AW_HIDE);
-            _isPopup = false;
         }
 
         public FrmPopup()
@@ -72,36 +72,41 @@ namespace FileSystem
             this.Close();
         }
 
-        public static void Show(string caption, string content, int duration)
+        public static bool Show(string caption, string content, int duration,object tag)
         {
-            if (_isPopup) return;
+            if (_isPopup) return false;
             _isPopup = true;
             _frmPopup = new FrmPopup();
             _frmPopup.Text = caption;
             _frmPopup.lblContent.Text = content;
+            _frmPopup.Tag = tag;
             if (duration > 0)
             {
                 _timer1.Interval = duration;
                 _timer1.Enabled = true;
             }
             _frmPopup.Show();
+            return true;
         }
-        public static void Show(string content)
+        public static bool Show(string content,object tag)
         {
-            Show("新消息", content, 0);
+            return Show("新消息", content, 0,tag);
         }
 
         public static void ClosePopup()
         {
-            if (_frmPopup != null)
-                _frmPopup.Close();
+            _frmPopup?.Close();
         }
 
         private void FrmPopup_Click(object sender, EventArgs e)
         {
-            if (ClickNotice != null)
-                ClickNotice(sender, e);
-            _frmPopup.Close();
+            ClickNotice?.Invoke(Tag);
+            this.Close();
+        }
+
+        private void FrmPopup_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            _isPopup = false;
         }
     }
 }

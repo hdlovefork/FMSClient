@@ -85,7 +85,7 @@
             this.skinLabel1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.skinLabel1.Location = new System.Drawing.Point(181, 119);
             this.skinLabel1.Name = "skinLabel1";
-            this.skinLabel1.Size = new System.Drawing.Size(43, 20);
+            this.skinLabel1.Size = new System.Drawing.Size(36, 17);
             this.skinLabel1.TabIndex = 3;
             this.skinLabel1.Text = " 查看";
             this.skinLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -93,7 +93,7 @@
             // 
             // FrmPopup
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackShade = false;
             this.BackToColor = false;
@@ -115,6 +115,7 @@
             this.Text = " 新消息";
             this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmPopup_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmPopup_FormClosed);
             this.Load += new System.EventHandler(this.FrmPopup_Load);
             ((System.ComponentModel.ISupportInitialize)(this.skinPictureBox1)).EndInit();
             this.ResumeLayout(false);

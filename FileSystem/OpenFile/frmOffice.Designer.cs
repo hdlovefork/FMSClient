@@ -28,28 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmOffice));
-            this.axFramerControl2 = new AxDSOFramer.AxFramerControl();
-            ((System.ComponentModel.ISupportInitialize)(this.axFramerControl2)).BeginInit();
             this.SuspendLayout();
-            // 
-            // axFramerControl2
-            // 
-            this.axFramerControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.axFramerControl2.Enabled = true;
-            this.axFramerControl2.Location = new System.Drawing.Point(0, 0);
-            this.axFramerControl2.Name = "axFramerControl2";
-            this.axFramerControl2.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axFramerControl2.OcxState")));
-            this.axFramerControl2.Size = new System.Drawing.Size(1262, 753);
-            this.axFramerControl2.TabIndex = 0;
             // 
             // frmOffice
             // 
-            this.ClientSize = new System.Drawing.Size(1262, 753);
-            this.Controls.Add(this.axFramerControl2);
+            this.ClientSize = new System.Drawing.Size(1, 1);
+            this.ForeColor = System.Drawing.Color.Transparent;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmOffice";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmOffice_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.axFramerControl2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -58,6 +51,5 @@
 
         //private AxDSOFramer.AxFramerControl axFramerControl1;
         private AxDSOFramer.AxFramerControl axFramerControl1;
-        private AxDSOFramer.AxFramerControl axFramerControl2;
     }
 }

@@ -210,7 +210,15 @@ namespace FileSystem.Data.SqlServer
             Dictionary<string, DbParameter[]> dic = new Dictionary<string, DbParameter[]>();
             dic.Add("update  [File]  set FileName=@BFileName where FileName=@LFileName", new SqlParameter[] { new SqlParameter("@BFileName", BFileName), new SqlParameter("@LFileName", LFileName) });
             return db.ExecuteNonQuery(dic) > 0;
-        }      
+        }
+
+        public bool UpdateCatelog(File file)
+        {
+            string sql = "UPDATE [File] SET FileName=@FileName WHERE FileID=@FileID";
+            return db.ExecuteNonQuery(sql, new SqlParameter("@FileID", file.FileID),
+                new SqlParameter("@FileName", file.FileName)
+                ) > 0;
+        }
 
         public List<File_Department> GetDepByFID(int fid)
         {

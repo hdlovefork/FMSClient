@@ -33,7 +33,6 @@ namespace FileSystem
 
         private void frmFind_Load(object sender, EventArgs e)
         {
-
             dateTimePicker2.Value = DateTime.Now;
             dateTimePicker1.Value = DateTime.Now.Date;
         }

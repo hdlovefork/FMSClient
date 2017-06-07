@@ -6,6 +6,7 @@ using FileSystem.Data;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
+using System.Threading;
 
 namespace WatchDog
 {
@@ -13,7 +14,7 @@ namespace WatchDog
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("安全狗启动！开始监视BlueSky应用程序！");
+            Console.WriteLine("安全狗启动！开始监视BlueSky应用程序！...");
             bool bRun;
             try
             {
@@ -25,6 +26,8 @@ namespace WatchDog
             {
                 try
                 {
+                    Thread.Sleep(2000);
+                    Console.WriteLine("准备清理文件");
                     var path = string.Format("{0}\\temp", Application.StartupPath);
                     //KillProcess();
                     if (Directory.Exists(path))
@@ -37,7 +40,10 @@ namespace WatchDog
                         Directory.CreateDirectory(path);
                     }
                 }
-                catch { }
+                catch(Exception e)
+                {
+                    Console.WriteLine("删除文件发生异常:{0}",e.Message);
+                }
             }
         }
 

@@ -36,7 +36,7 @@ namespace FileSystem
         public frmMain()
         {
             InitializeComponent();
-            FrmPopup.ClickNotice += new EventHandler(FrmPopup_Click);
+            FrmPopup.ClickNotice += FrmPopup_Click;
         }
 
 
@@ -481,19 +481,23 @@ namespace FileSystem
                 {
                     //var frm = new frmOffice(path, true, ext);
                     //frm.Show();
-                    Process.Start(path);
+                    Process p = Process.Start(path);
+                    Job.Instance.AddProcess(p.Handle);
+
+                    //frmOffice frm=new frmOffice(path,realName);
+                    //frm.Show();
                 }
                 //部分格式文件还没有找到合适插件，所以暂时使用系统自动识别
                 else
                 {
-                    Process.Start(path);
+                    Job.Instance.AddProcess(Process.Start(path).Handle);
                 }
             }
             catch (Exception ex)
             {
                 Debug.Print("{0}:{1}", ex.Source, ex.Message);
                 //MessageBox.Show("您未安装可打开该文件的应用，请安装之后再打开！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                Process.Start(path);
+               // Job.Instance.AddProcess(Process.Start(path).Handle);
             }
         }
 
@@ -816,9 +820,6 @@ namespace FileSystem
             }
         }
 
-        private int _noticeFileID;
-        private int _noticeID;
-        private List<int> _popupFileID = new List<int>(); //已经提醒过的消息
         private File_Share_NoticeBLL _fileShareBll = new File_Share_NoticeBLL();
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -826,24 +827,21 @@ namespace FileSystem
             //读取Notice表，取出未读消息 ToUser == LoginUser.UserID AND IsRead==false
             // FrmPopup.Show("34224");
             File_User_Notice notice = _fileShareBll.GetNotice(LoginUser.UserId);
-            if (notice != null && !_popupFileID.Contains(notice.NoticeID))
+            if (notice != null )
             {
-                _popupFileID.Add(notice.NoticeID);
-                _noticeID = notice.NoticeID;
-                _noticeFileID = notice.FileID;
-                FrmPopup.Show(string.Format("{0}借阅了一份文件给你", notice.UserRealName));
+                if(FrmPopup.Show(string.Format("{0}借阅了一份文件给你", notice.UserRealName), notice))
+                    _fileShareBll.UpdateNotice(notice.NoticeID);
             }
         }
 
 
-        void FrmPopup_Click(object sender, EventArgs e)
+        void FrmPopup_Click(object obj)
         {
             Debug.Print("点击了");
-            if (_noticeFileID == 0) return;
-            OpenFile(_noticeFileID.ToString());
-            //标记已读  _noticeID   SET IsRead=1
-            _fileShareBll.UpdateNotice(_noticeID);
-        }
+            File_User_Notice notice = obj as File_User_Notice;
+            if (notice == null) return;
+            OpenFile(notice.FileID.ToString());
+           }
 
         private void skinTreeViewDep_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {

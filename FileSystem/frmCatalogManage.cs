@@ -105,7 +105,7 @@ namespace FileSystem
         {
             this.skinGroupBox2.Enabled = true;
             _bAdd = true;
-            txtFileName.SkinTxt.Text  = string.Empty;
+            txtFileName.SkinTxt.Text = string.Empty;
         }
 
         private bool _hasUpdate;//记录是否成功添加/更新目录到数据库
@@ -127,50 +127,23 @@ namespace FileSystem
         }
         private bool AddFunction()
         {
-            bool pd = false;
-            if (_selectedNode.Name != "-1")
+            bool ok = false;
+            File file = _selectedNode.Tag as File;
+            int? fileID = file?.FileID;
+            fileID = fileID ?? -1;
+            File f1 = new File
             {
-                //添加父级目录
-                File f = _selectedNode.Tag as File;
-                File f1 = new File
-                {
-                    FileName = this.txtFileName.SkinTxt.Text,
-                    FileSize = 0,
-                    FilePID = f.FileID,
-                    UserID = LoginUser.UserId
-                };
-                bool ok = new FileBLL().AddCatalogFile(f1);
-                if (ok)
-                {
-                    pd = true;
-                }
-                else
-                {
-                    MessageBox.Show("添加失败");
-                }
-            }
-            else
+                FileName = this.txtFileName.SkinTxt.Text,
+                FileSize = 0,
+                FilePID = fileID,
+                UserID = LoginUser.UserId,
+            };
+            ok = new FileBLL().AddCatalogFile(f1);
+            if (!ok)
             {
-                //添加子级目录
-                File f1 = new File
-                {
-                    FileName = this.txtFileName.SkinTxt.Text,
-                    FileSize = 0,
-                    FilePID = -1,
-                    UserID = LoginUser.UserId
-                };
-                bool ok = new FileBLL().AddCatalogFile(f1);
-                if (ok)
-                {
-                    pd = true;
-                }
-                else
-                {
-                    MessageBox.Show("添加失败");
-                }
-
+                MessageBox.Show("添加失败");
             }
-            return pd;
+            return ok;
         }
 
 
@@ -181,16 +154,25 @@ namespace FileSystem
             if (_selectedNode.Name == "-1")
             {
                 MessageBox.Show("主目录不可修改");
+                return false;
             }
-            string bname = _selectedNode.Text;
             string lname = this.txtFileName.SkinTxt.Text.Trim();
             if (string.IsNullOrWhiteSpace(lname))
             {
                 MessageBox.Show("目录名不能为空");
                 return false;
             }
+            File file = _selectedNode.Tag as File;
+            int? fileID = file?.FileID;
+            if (fileID == null) return false;
+           
+            File f = new File()
+            {
+                FileID = (int)fileID,
+                FileName = lname
+            };
             //更新的方法
-            bool ok = new FileBLL().UpdateCatalog(lname, bname);
+            bool ok = new FileBLL().UpdateCatalog(f);
             if (ok)
             {
                 MessageBox.Show("更新成功");
@@ -231,6 +213,7 @@ namespace FileSystem
                 {
                     this.skinTreeView1.Nodes.Remove(_selectedNode);
                     ReloadTree();
+                    _hasUpdate = true;
                 }
             }
         }

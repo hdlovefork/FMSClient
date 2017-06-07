@@ -24,7 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
+    <DebugType>none</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
@@ -46,6 +46,7 @@
     <Compile Include="Kit\AT.cs" />
     <Compile Include="Kit\FileKit.cs" />
     <Compile Include="IQueryInfo.cs" />
+    <Compile Include="Kit\Job.cs" />
     <Compile Include="Kit\MediaHandler.cs" />
     <Compile Include="ModelConvertHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
